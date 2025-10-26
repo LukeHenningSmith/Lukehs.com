@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import "./App.css";
 import CascadingContent from "./components/CascadingText";
 import Header from "./components/Header";
+import SkiTracks from "./components/ui/SkiTracks";
 
 function App() {
   const pageContent: ReactNode[] = [
@@ -36,6 +37,7 @@ function App() {
 
   return (
     <div className="flex flex-col min-h-screen">
+      <SkiTracks />
       <Header />
 
       <main className="flex-1 flex justify-center py-8 overflow-y-auto">
