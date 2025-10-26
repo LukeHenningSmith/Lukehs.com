@@ -1,4 +1,3 @@
-/* Base background kept subtle — ski tracks sit on top of this. */
 body {
   background: var(--background);
 }
@@ -10,7 +9,7 @@ body {
   z-index: -1; /* behind page content */
   pointer-events: none;
   overflow: hidden;
-  opacity: 0.85;
+  opacity: 0.99;
 }
 
 .ski-svg {
@@ -26,19 +25,23 @@ body {
 /* Default (light) theme: dark subtle tracks for contrast */
 .track-line {
   fill: none;
-  stroke: rgba(0, 0, 0, 0.08);
+  stroke: rgba(0, 0, 0, 0.05);
   stroke-width: 2.5;
   stroke-linecap: round;
   stroke-linejoin: round;
   stroke-dasharray: 1200;
   stroke-dashoffset: 1200;
-  animation: draw 5.6s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+  animation: draw 30s cubic-bezier(0.6, 0, 0.4, 1) var(--delay, 0s) 1 forwards;
+
+  /* allow per-track stagger via --delay set on the parent group */
+  animation-delay: var(--delay, 0s);
+  animation-fill-mode: both;
 }
 
 .track-line--offset {
-  stroke: rgba(0, 0, 0, 0.12);
+  stroke: rgba(0, 0, 0, 0.05);
   stroke-width: 2;
-  transform: translateY(6px);
+  transform: translateX(4px);
   transform-origin: 0 0;
   opacity: 0.95;
 }
@@ -65,23 +68,6 @@ body {
   }
   100% {
     stroke-dashoffset: 0;
-    opacity: 0;
+    opacity: 1;
   }
-}
-
-/* small fade to avoid popping edges */
-@keyframes subtleShift {
-  0% {
-    opacity: 0.9;
-  }
-  50% {
-    opacity: 0.95;
-  }
-  100% {
-    opacity: 0.9;
-  }
-}
-
-.ski-bg {
-  animation: subtleShift 18s ease-in-out infinite;
 }

@@ -1,10 +1,6 @@
 const paths: string[] = [
-  // left -> right sweeping curves (viewBox 0 0 1000 1000)
-  "M -150 120 C 180 160 420 340 1100 520",
-  "M -150 260 C 200 220 420 420 1100 600",
-  "M -150 420 C 150 480 520 560 1100 720",
-  "M -150 580 C 240 620 640 420 1100 400",
-  "M -150 740 C 280 700 720 820 1100 900",
+  "M 0 50 C 24 130 60 160 110 190 C 170 230 140 320 120 400 C 110 520 150 620 140 720 C 130 820 125 880 120 1000",
+  "M 0 150 C 30 140 80 170 140 200 C 210 250 180 360 160 470 C 150 560 160 650 180 740 C 200 840 210 900 200 1000",
 ];
 
 export default function SkiTracks() {
@@ -20,10 +16,16 @@ export default function SkiTracks() {
           <g
             className="track"
             key={i}
-            style={{ animationDelay: `${i * 1.1}s` }}
+            // set a CSS variable so child paths can pick up the delay (animation-delay doesn't inherit)
+            style={{ ["--delay" as any]: `${i * 2.18}s` }}
           >
             <path className="track-line" d={d} />
-            <path className="track-line track-line--offset" d={d} />
+            <path
+              className="track-line track-line--offset"
+              d={d}
+              // make the offset line start slightly after its partner for a natural look
+              style={{ ["--delay" as any]: `${i * 2.19}s` }}
+            />
           </g>
         ))}
       </svg>

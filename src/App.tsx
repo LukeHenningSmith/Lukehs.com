@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import "./App.css";
-import CascadingContent from "./components/CascadingText";
+import CascadingContent from "./components/CascadingContent";
 import Header from "./components/Header";
 import SkiTracks from "./components/ui/SkiTracks";
 
@@ -38,6 +38,7 @@ function App() {
   return (
     <div className="flex flex-col min-h-screen">
       <SkiTracks />
+
       <Header />
 
       <main className="flex-1 flex justify-center py-8 overflow-y-auto">
@@ -45,8 +46,6 @@ function App() {
           <h1 className="text-3xl font-bold mb-4">Luke Henning-Smith</h1>
 
           <CascadingContent content={pageContent} />
-
-          <div></div>
         </div>
       </main>
     </div>
