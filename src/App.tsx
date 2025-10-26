@@ -4,36 +4,20 @@ import CascadingContent from "./components/CascadingContent";
 import Header from "./components/Header";
 import SkiTracks from "./components/ui/SkiTracks";
 import { ThemeProvider } from "./components/theme/theme-provider";
+import { MapPin } from "lucide-react";
+import Intro from "./components/sections/Intro";
+import Experience from "./components/sections/Experience";
+import Education from "./components/sections/Education";
+import Projects from "./components/sections/Projects";
+import Skiing from "./components/sections/Skiing";
 
 function App() {
   const pageContent: ReactNode[] = [
-    <div>lalala</div>,
-    <div>papapa</div>,
-    <div>zazaza</div>,
-    <div>lalala</div>,
-    <div>papapa</div>,
-    <div>zazaza</div>,
-    <div>lalala</div>,
-    <div>papapa</div>,
-    <div>zazaza</div>,
-    <div>lalala</div>,
-    <div>papapa</div>,
-    <div>zazaza</div>,
-    <div>lalala</div>,
-    <div>papapa</div>,
-    <div>zazaza</div>,
-    <div>lalala</div>,
-    <div>papapa</div>,
-    <div>zazaza</div>,
-    <div>lalala</div>,
-    <div>papapa</div>,
-    <div>zazaza</div>,
-    <div>lalala</div>,
-    <div>papapa</div>,
-    <div>zazaza</div>,
-    <div>lalala</div>,
-    <div>papapa</div>,
-    <div>zazaza</div>,
+    <Intro />,
+    <Experience />,
+    <Education />,
+    <Projects />,
+    <Skiing />,
   ];
 
   return (
@@ -43,13 +27,28 @@ function App() {
 
         <Header />
 
-        <main className="flex-1 flex justify-center py-8 overflow-y-auto">
-          <div className="w-full max-w-4xl px-4">
-            <h1 className="text-3xl font-bold mb-4">Luke Henning-Smith</h1>
+        <main className="flex-1 flex justify-center py-16 overflow-y-auto">
+          <div className="w-full max-w-4xl space-y-12 px-4">
+            <div className="w-full max-w-4xl space-y-2">
+              <h1 className="text-4xl font-bold">Luke Henning-Smith</h1>
+              <h2 className="text-xl text-muted-foreground">
+                Software Engineer
+              </h2>
+              <p className="text-sm italic flex items-center gap-2 text-muted-foreground">
+                <MapPin size={18} />
+                Sydney, Australia
+              </p>
+            </div>
 
             <CascadingContent content={pageContent} />
           </div>
         </main>
+
+        <footer className="w-full py-4 flex justify-center">
+          <span className="text-sm text-muted-foreground">
+            © 2025 Luke Henning-Smith. All rights reserved.
+          </span>
+        </footer>
       </div>
     </ThemeProvider>
   );

@@ -31,7 +31,7 @@ body {
   stroke-linejoin: round;
   stroke-dasharray: 1200;
   stroke-dashoffset: 1200;
-  animation: draw 30s cubic-bezier(0.6, 0, 0.4, 1) var(--delay, 0s) 1 forwards;
+  animation: draw 10s cubic-bezier(0.6, 0, 0.4, 1) var(--delay, 0s) 1 forwards;
 
   /* allow per-track stagger via --delay set on the parent group */
   animation-delay: var(--delay, 0s);
@@ -43,15 +43,15 @@ body {
   stroke-width: 2;
   transform: translateX(4px);
   transform-origin: 0 0;
-  opacity: 0.95;
+  opacity: 0.25;
 }
 
 /* Dark theme overrides: make tracks light */
 .dark .track-line {
-  stroke: rgba(255, 255, 255, 0.12);
+  stroke: rgba(255, 255, 255, 0.06);
 }
 .dark .track-line--offset {
-  stroke: rgba(255, 255, 255, 0.22);
+  stroke: rgba(255, 255, 255, 0.12);
 }
 
 /* Draw each path from start to finish, then reset — staggered via inline style */

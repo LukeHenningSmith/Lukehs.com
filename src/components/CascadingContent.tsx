@@ -16,7 +16,7 @@ export default function CascadingContent({
   content: ReactNode[];
 }) {
   return (
-    <div className="space-y-4">
+    <div className="space-y-16">
       {content.map((element, i) => (
         <motion.p
           key={i}

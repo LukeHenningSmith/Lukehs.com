@@ -3,8 +3,9 @@
 // 2. More lines + some on left
 // 3. Smoother curves
 const paths: string[] = [
-  "M 0 50 C 170 80 130 160 80 310 C 60 400 250 500 80 680 C 5 750 150 820 150 880 C 153 940 100 980 100 1000",
-  "M 0 150 C 170 180 130 260 80 410 C 60 500 250 600 80 780 C 5 850 150 920 150 980 C 153 1100 100 1100 100 1100",
+  "M -50 100 C 170 120 130 160 80 310 C 60 400 250 500 80 680 C 5 750 150 820 150 880 C 153 940 100 980 100 1000", //left top
+  "M -50 180 C 170 200 130 260 80 410 C 60 500 250 600 80 780 C 5 850 150 920 150 980 C 153 1100 100 1100 100 1100", //left bottom
+  "M 1050 500 C 950 600 920 690 950 780 C 975 860 920 940 900 1100", //right
 ];
 
 export default function SkiTracks() {
@@ -21,14 +22,14 @@ export default function SkiTracks() {
             className="track"
             key={i}
             // set a CSS variable so child paths can pick up the delay (animation-delay doesn't inherit)
-            style={{ ["--delay" as any]: `${i * 2.18}s` }}
+            style={{ ["--delay" as any]: `${i * 1.18}s` }}
           >
             <path className="track-line" d={d} />
             <path
               className="track-line track-line--offset"
               d={d}
               // make the offset line start slightly after its partner for a natural look
-              style={{ ["--delay" as any]: `${i * 2.19}s` }}
+              style={{ ["--delay" as any]: `${i * 1.19}s` }}
             />
           </g>
         ))}
