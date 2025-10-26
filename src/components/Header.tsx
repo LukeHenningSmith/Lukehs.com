@@ -25,15 +25,51 @@ function Header() {
               <h1 className="text-base">Projects</h1>
             </Button>
 
-            <Button variant={"ghost"} size="icon" className="cursor-pointer">
+            <Button variant={"ghost"} size={"sm"} className="cursor-pointer">
+              <h1 className="text-base">Skiing</h1>
+            </Button>
+
+            <Button
+              variant={"ghost"}
+              size="icon"
+              className="cursor-pointer"
+              onClick={() => {
+                const newWindow = window.open(
+                  "https://linkedin.com/in/luke-hs",
+                  "_blank"
+                );
+                if (newWindow) newWindow.opener = null;
+              }}
+            >
               <Linkedin />
             </Button>
 
-            <Button variant={"ghost"} size="icon" className="cursor-pointer">
+            <Button
+              variant={"ghost"}
+              size="icon"
+              className="cursor-pointer"
+              onClick={() => {
+                const to = "you@example.com";
+                const subject = encodeURIComponent("Hello");
+                const body = encodeURIComponent("Hi Luke,");
+                window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+              }}
+            >
               <Mail />
             </Button>
 
-            <Button variant={"ghost"} size="icon" className="cursor-pointer">
+            <Button
+              variant={"ghost"}
+              size="icon"
+              className="cursor-pointer"
+              onClick={() => {
+                const newWindow = window.open(
+                  "https://github.com/LukeHenningSmith",
+                  "_blank"
+                );
+                if (newWindow) newWindow.opener = null;
+              }}
+            >
               <Github />
             </Button>
 
