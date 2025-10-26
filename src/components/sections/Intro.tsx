@@ -38,7 +38,7 @@ function Intro() {
     <div className="flex flex-col gap-4 text-base text-muted-foreground">
       <span>
         Hi! I'm Luke, a software engineer from Sydney with 2 years experience
-        building fullstack web applications in the FinTech industry. The
+        building fullstack web applications in the finance industry. The
         technologies I am most experienced with are:
       </span>
 

@@ -6,7 +6,7 @@ body {
 .ski-bg {
   position: fixed;
   inset: 0;
-  z-index: 0; /* behind page content */
+  z-index: -1;
   pointer-events: none;
   overflow: hidden;
   opacity: 0.99;
@@ -16,14 +16,29 @@ body {
   content: "";
   position: fixed;
   inset: 0;
-  z-index: -1; /* keep behind the svg (.ski-bg is z-index:-1) */
+  z-index: -2;
   pointer-events: none;
-  background-image: url("/mountain.jpg"); /* set your path */
+  background-image: url("/mountain.jpg");
   background-repeat: no-repeat;
   background-position: center;
-  background-size: cover; /* fill viewport without distortion (cropped/zoomed) */
-  opacity: 0.08; /* tweak (0.02 - 0.08) for desired faintness */
-  filter: saturate(0.6) brightness(0.9); /* optional: mute/sheen */
+  background-size: cover;
+  opacity: 0.12;
+  filter: saturate(0.6) brightness(0.9);
+  will-change: transform, opacity;
+}
+
+.dark .ski-bg::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background-image: url("/mountain.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  opacity: 0.08;
+  filter: saturate(0.6) brightness(0.9);
   will-change: transform, opacity;
 }
 
@@ -46,7 +61,7 @@ body {
   stroke-linejoin: round;
   stroke-dasharray: 1200;
   stroke-dashoffset: 1200;
-  animation: draw 10s cubic-bezier(0.6, 0, 0.4, 1) var(--delay, 0s) 1 forwards;
+  animation: draw 20s cubic-bezier(0.6, 0, 0.4, 1) var(--delay, 0s) 1 forwards;
 
   /* allow per-track stagger via --delay set on the parent group */
   animation-delay: var(--delay, 0s);
