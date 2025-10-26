@@ -1,6 +1,10 @@
+// TODO: Need to make a few improvements to these:
+// 1. Smoother line drawing (less speed up / slow down)
+// 2. More lines + some on left
+// 3. Smoother curves
 const paths: string[] = [
-  "M 0 50 C 24 130 60 160 110 190 C 170 230 140 320 120 400 C 110 520 150 620 140 720 C 130 820 125 880 120 1000",
-  "M 0 150 C 30 140 80 170 140 200 C 210 250 180 360 160 470 C 150 560 160 650 180 740 C 200 840 210 900 200 1000",
+  "M 0 50 C 170 80 130 160 80 310 C 60 400 250 500 80 680 C 5 750 150 820 150 880 C 153 940 100 980 100 1000",
+  "M 0 150 C 170 180 130 260 80 410 C 60 500 250 600 80 780 C 5 850 150 920 150 980 C 153 1100 100 1100 100 1100",
 ];
 
 export default function SkiTracks() {
