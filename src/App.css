@@ -6,10 +6,25 @@ body {
 .ski-bg {
   position: fixed;
   inset: 0;
-  z-index: -1; /* behind page content */
+  z-index: 0; /* behind page content */
   pointer-events: none;
   overflow: hidden;
   opacity: 0.99;
+}
+
+.ski-bg::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1; /* keep behind the svg (.ski-bg is z-index:-1) */
+  pointer-events: none;
+  background-image: url("/mountain.jpg"); /* set your path */
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover; /* fill viewport without distortion (cropped/zoomed) */
+  opacity: 0.08; /* tweak (0.02 - 0.08) for desired faintness */
+  filter: saturate(0.6) brightness(0.9); /* optional: mute/sheen */
+  will-change: transform, opacity;
 }
 
 .ski-svg {

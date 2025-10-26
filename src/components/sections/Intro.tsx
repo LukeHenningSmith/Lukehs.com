@@ -37,9 +37,9 @@ function Intro() {
   return (
     <div className="flex flex-col gap-4 text-base text-muted-foreground">
       <span>
-        Hi! I'm Luke Henning-Smith, a software engineer from Sydney with 2 years
-        experience building fullstack web applications in the FinTech industry.
-        The technologies I'm most experienced with are:
+        Hi! I'm Luke, a software engineer from Sydney with 2 years experience
+        building fullstack web applications in the FinTech industry. The
+        technologies I am most experienced with are:
       </span>
 
       <div className="flex gap-2 mb-4">
@@ -63,7 +63,7 @@ function Intro() {
 
       <span>
         <i>
-          Also an avid skiier with a{" "}
+          I am also an avid skiier with a{" "}
           <u
             className="hover:text-primary cursor-pointer"
             onClick={() => {
