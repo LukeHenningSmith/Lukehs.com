@@ -2,6 +2,19 @@ import { ModeToggle } from "./theme/ModeToggle";
 import { Github, Mail, Linkedin } from "lucide-react";
 import { Button } from "./ui/button";
 
+function scrollToId(id: string) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  if (window.history && window.history.replaceState) {
+    window.history.replaceState(null, "", `#${id}`);
+  } else {
+    window.location.hash = id;
+  }
+  el.scrollIntoView({ behavior: "smooth", block: "start" });
+  el.setAttribute("tabindex", "-1");
+  (el as HTMLElement).focus({ preventScroll: true });
+}
+
 function Header() {
   return (
     <>
@@ -13,19 +26,39 @@ function Header() {
 
         <div className="flex justify-end">
           <div className="flex items-center">
-            <Button variant={"ghost"} size={"sm"} className="cursor-pointer">
+            <Button
+              variant={"ghost"}
+              size={"sm"}
+              className="cursor-pointer"
+              onClick={() => scrollToId("experience")}
+            >
               <h1 className="text-base">Experience</h1>
             </Button>
 
-            <Button variant={"ghost"} size={"sm"} className="cursor-pointer">
+            <Button
+              variant={"ghost"}
+              size={"sm"}
+              className="cursor-pointer"
+              onClick={() => scrollToId("education")}
+            >
               <h1 className="text-base">Education</h1>
             </Button>
 
-            <Button variant={"ghost"} size={"sm"} className="cursor-pointer">
+            <Button
+              variant={"ghost"}
+              size={"sm"}
+              className="cursor-pointer"
+              onClick={() => scrollToId("projects")}
+            >
               <h1 className="text-base">Projects</h1>
             </Button>
 
-            <Button variant={"ghost"} size={"sm"} className="cursor-pointer">
+            <Button
+              variant={"ghost"}
+              size={"sm"}
+              className="cursor-pointer"
+              onClick={() => scrollToId("skiing")}
+            >
               <h1 className="text-base">Skiing</h1>
             </Button>
 
