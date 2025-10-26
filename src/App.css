@@ -48,10 +48,6 @@ body {
   display: block;
 }
 
-.track {
-  opacity: 1;
-}
-
 /* Default (light) theme: dark subtle tracks for contrast */
 .track-line {
   fill: none;
@@ -61,11 +57,15 @@ body {
   stroke-linejoin: round;
   stroke-dasharray: 1200;
   stroke-dashoffset: 1200;
-  animation: draw 30s cubic-bezier(0.6, 0, 0.4, 1) var(--delay, 0s) 1 forwards;
-
-  /* allow per-track stagger via --delay set on the parent group */
-  animation-delay: var(--delay, 0s);
+  animation: draw 30s cubic-bezier(0.2, 0.1, 0.4, 0.2) 0s 1 forwards;
   animation-fill-mode: both;
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
 }
 
 .track-line--offset {
@@ -82,24 +82,6 @@ body {
 }
 .dark .track-line--offset {
   stroke: rgba(255, 255, 255, 0.12);
-}
-
-/* Draw each path from start to finish, then reset — staggered via inline style */
-@keyframes draw {
-  0% {
-    stroke-dashoffset: 1200;
-    opacity: 0;
-  }
-  8% {
-    opacity: 1;
-  }
-  85% {
-    opacity: 1;
-  }
-  100% {
-    stroke-dashoffset: 0;
-    opacity: 1;
-  }
 }
 
 /* light-dark polygon animation */
