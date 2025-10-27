@@ -5,7 +5,29 @@ export function Education() {
     <div className="flex flex-col gap-4">
       <LinkableHeading id="education">Education</LinkableHeading>
 
-      <span className="text-muted-foreground">Coming soon...</span>
+      <div className="flex gap-2 text-muted-foreground">
+        <div className="flex mx-1 w-[60px] align-middle justify-center">
+          <img className="" src="/usyd-logo.svg" />
+        </div>
+
+        <div className="flex-1">
+          <div className="flex flex-col">
+            <div className="text-primary font-bold">University of Sydney</div>
+            <div className="text-primary">
+              Bachelor of Engineering Honours (Software Engineering) and
+              Bachelor of Science (Chemistry)
+            </div>
+            <div>2019 - 2024</div>
+          </div>
+        </div>
+      </div>
+      <div className="flex gap-2">
+        <div className="flex mx-1 w-[60px] align-middle justify-center"></div>
+
+        <div className="flex-1">
+          Grade: Honours Class I and the University Medal
+        </div>
+      </div>
     </div>
   );
 }

@@ -3,7 +3,7 @@ import { Button } from "../ui/button";
 import { ModeToggle } from "../theme/ModeToggle";
 import type { ReactNode } from "react";
 
-function scrollToId(id: string) {
+export function scrollToId(id: string) {
   const el = document.getElementById(id);
   if (!el) return;
   if (window.history && window.history.replaceState) {
@@ -16,13 +16,16 @@ function scrollToId(id: string) {
   (el as HTMLElement).focus({ preventScroll: true });
 }
 
+export const subtleButtonStyle =
+  "cursor-pointer text-muted-foreground hover:text-primary bg-transparent hover:bg-transparent dark:hover:bg-transparent dark:bg-transparent";
+
 function Header() {
   const renderTextButton = ({ id, label }: { id: string; label: string }) => {
     return (
       <Button
         variant={"ghost"}
         size={"sm"}
-        className="cursor-pointer"
+        className={subtleButtonStyle}
         onClick={() => scrollToId(id)}
       >
         <h1 className="text-base">{label}</h1>
@@ -48,7 +51,7 @@ function Header() {
       <Button
         variant={"ghost"}
         size="icon"
-        className="cursor-pointer"
+        className={subtleButtonStyle}
         onClick={onClick ?? handleClick}
       >
         {icon}
@@ -59,12 +62,20 @@ function Header() {
   return (
     <>
       <header className="w-full text-foreground p-4">
-        <h1 className="fixed text-xl font-semibold">
-          <img src="/logo-light.svg" alt="Logo" className="block dark:hidden" />
-          <img src="/logo-dark.svg" alt="Logo" className="hidden dark:block" />
-        </h1>
+        <div className="flex justify-between items-center">
+          <h1 className="text-xl font-semibold w-14">
+            <img
+              src="/logo-light.svg"
+              alt="Logo"
+              className="block dark:hidden"
+            />
+            <img
+              src="/logo-dark.svg"
+              alt="Logo"
+              className="hidden dark:block"
+            />
+          </h1>
 
-        <div className="flex justify-end">
           <div className="flex items-center">
             <div className="hidden min-[640px]:flex items-center">
               {renderTextButton({ id: "experience", label: "Experience" })}

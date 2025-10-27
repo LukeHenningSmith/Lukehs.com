@@ -17,8 +17,8 @@ export function PageContainer() {
   ];
 
   return (
-    <main className="flex-1 flex justify-center py-16 overflow-y-auto">
-      <div className="w-full max-w-4xl space-y-12 px-4">
+    <main className="flex-1 flex justify-center py-16 overflow-y-auto px-8">
+      <div className="w-full max-w-4xl space-y-12">
         <div className="w-full max-w-4xl space-y-2">
           <h1 className="text-4xl font-bold">Luke Henning-Smith</h1>
           <h2 className="text-xl text-muted-foreground">Software Engineer</h2>

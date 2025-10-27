@@ -1,3 +1,4 @@
+import { scrollToId } from "../layout/Header";
 import { Skills } from "../Skills";
 
 export function Intro() {
@@ -26,12 +27,12 @@ export function Intro() {
       imgSrc: "/tech-icons/aws-logo.svg",
       url: "https://www.aws.com/",
     },
-    {
-      id: "docker",
-      label: "Docker",
-      imgSrc: "/tech-icons/docker-logo.svg",
-      url: "https://www.docker.com/",
-    },
+    // {
+    //   id: "docker",
+    //   label: "Docker",
+    //   imgSrc: "/tech-icons/docker-logo.svg",
+    //   url: "https://www.docker.com/",
+    // },
   ];
 
   return (
@@ -44,14 +45,12 @@ export function Intro() {
 
       <Skills skills={skills} />
 
-      <span>
+      <span className="mt-2">
         <i>
           I am also an avid skiier with a{" "}
           <u
             className="hover:text-primary cursor-pointer"
-            onClick={() => {
-              console.log("TODO");
-            }}
+            onClick={() => scrollToId("skiing")}
           >
             bucket list
           </u>{" "}
