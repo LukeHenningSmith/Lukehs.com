@@ -1,7 +1,7 @@
-import { Button } from "../ui/button";
+import { Skills } from "../Skills";
 
-function Intro() {
-  const technologies = [
+export function Intro() {
+  const skills = [
     {
       id: "typescript",
       label: "Typescript",
@@ -42,24 +42,7 @@ function Intro() {
         technologies I am most experienced with are:
       </span>
 
-      <div className="flex gap-2 mb-4">
-        {technologies.map((tech) => (
-          <Button
-            id={tech.id}
-            key={tech.id}
-            variant={"default"}
-            size={"sm"}
-            className="cursor-pointer dark:bg-secondary bg-[oklch(0.9_0_0)] text-muted-foreground hover:text-primary hover:bg-secondary hover:bg-[oklch(0.92_0_0)]"
-            onClick={() => {
-              const newWindow = window.open(tech.url, "_blank");
-              if (newWindow) newWindow.opener = null;
-            }}
-          >
-            <img src={tech.imgSrc} width={20} />
-            {tech.label}
-          </Button>
-        ))}
-      </div>
+      <Skills skills={skills} />
 
       <span>
         <i>
@@ -78,5 +61,3 @@ function Intro() {
     </div>
   );
 }
-
-export default Intro;

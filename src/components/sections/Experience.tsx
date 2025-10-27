@@ -1,6 +1,6 @@
 import LinkableHeading from "../LinkableHeading";
 
-function Experience() {
+export function Experience() {
   return (
     <div className="flex flex-col gap-4">
       <LinkableHeading id="experience">Experience</LinkableHeading>
@@ -9,5 +9,3 @@ function Experience() {
     </div>
   );
 }
-
-export default Experience;

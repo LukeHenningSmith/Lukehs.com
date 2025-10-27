@@ -1,0 +1,105 @@
+import { Github, Mail, Linkedin } from "lucide-react";
+import { Button } from "../ui/button";
+import { ModeToggle } from "../theme/ModeToggle";
+import type { ReactNode } from "react";
+
+function scrollToId(id: string) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  if (window.history && window.history.replaceState) {
+    window.history.replaceState(null, "", `#${id}`);
+  } else {
+    window.location.hash = id;
+  }
+  el.scrollIntoView({ behavior: "smooth", block: "start" });
+  el.setAttribute("tabindex", "-1");
+  (el as HTMLElement).focus({ preventScroll: true });
+}
+
+function Header() {
+  const renderTextButton = ({ id, label }: { id: string; label: string }) => {
+    return (
+      <Button
+        variant={"ghost"}
+        size={"sm"}
+        className="cursor-pointer"
+        onClick={() => scrollToId(id)}
+      >
+        <h1 className="text-base">{label}</h1>
+      </Button>
+    );
+  };
+
+  const renderIconButton = ({
+    icon,
+    url,
+    onClick,
+  }: {
+    icon: ReactNode;
+    url?: string;
+    onClick?: () => void;
+  }) => {
+    const handleClick = () => {
+      const newWindow = window.open(url, "_blank");
+      if (newWindow) newWindow.opener = null;
+    };
+
+    return (
+      <Button
+        variant={"ghost"}
+        size="icon"
+        className="cursor-pointer"
+        onClick={onClick ?? handleClick}
+      >
+        {icon}
+      </Button>
+    );
+  };
+
+  return (
+    <>
+      <header className="w-full text-foreground p-4">
+        <h1 className="fixed text-xl font-semibold">
+          <img src="/logo-light.svg" alt="Logo" className="block dark:hidden" />
+          <img src="/logo-dark.svg" alt="Logo" className="hidden dark:block" />
+        </h1>
+
+        <div className="flex justify-end">
+          <div className="flex items-center">
+            {renderTextButton({ id: "experience", label: "Experience" })}
+
+            {renderTextButton({ id: "education", label: "Education" })}
+
+            {renderTextButton({ id: "projects", label: "Projects" })}
+
+            {renderTextButton({ id: "skiing", label: "Skiing" })}
+
+            {renderIconButton({
+              icon: <Linkedin />,
+              url: "https://linkedin.com/in/luke-hs",
+            })}
+
+            {renderIconButton({
+              icon: <Mail />,
+              onClick: () => {
+                const to = "you@example.com";
+                const subject = encodeURIComponent("Hello");
+                const body = encodeURIComponent("Hi Luke,");
+                window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+              },
+            })}
+
+            {renderIconButton({
+              icon: <Github />,
+              url: "https://github.com/LukeHenningSmith",
+            })}
+
+            <ModeToggle />
+          </div>
+        </div>
+      </header>
+    </>
+  );
+}
+
+export default Header;
