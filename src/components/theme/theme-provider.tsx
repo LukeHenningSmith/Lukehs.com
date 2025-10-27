@@ -24,26 +24,69 @@ export function ThemeProvider({
   defaultTheme = "dark",
   ...props
 }: ThemeProviderProps) {
-  const [theme, setTheme] = useState<Theme>(defaultTheme);
+  const getInitialTheme = (): Theme => {
+    if (typeof window === "undefined") return defaultTheme;
+    try {
+      const stored = localStorage.getItem("theme");
+      if (stored === "dark" || stored === "light") return stored;
+    } catch (e) {
+      /* ignore */
+    }
+    if (
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches
+    )
+      return "dark";
+    return defaultTheme;
+  };
+
+  const [theme, setThemeState] = useState<Theme>(getInitialTheme);
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
     const root = window.document.documentElement;
     root.classList.remove("light", "dark");
     root.classList.add(theme);
+    try {
+      localStorage.setItem("theme", theme);
+    } catch (e) {
+      /* ignore */
+    }
   }, [theme]);
 
   useEffect(() => {
-    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      setTheme("dark");
-    } else {
-      setTheme("light");
+    if (typeof window === "undefined") return;
+    try {
+      const stored = localStorage.getItem("theme");
+      if (stored === "dark" || stored === "light") return; // user preference wins
+
+      const mq = window.matchMedia("(prefers-color-scheme: dark)");
+      const onChange = (e: MediaQueryListEvent | MediaQueryList) => {
+        setThemeState(e.matches ? "dark" : "light");
+      };
+      if (mq.addEventListener) mq.addEventListener("change", onChange as any);
+      else if ((mq as any).addListener) (mq as any).addListener(onChange);
+
+      return () => {
+        if (mq.removeEventListener)
+          mq.removeEventListener("change", onChange as any);
+        else if ((mq as any).removeListener)
+          (mq as any).removeListener(onChange);
+      };
+    } catch (e) {
+      /* ignore */
     }
   }, []);
 
   const value = {
     theme,
-    setTheme: (theme: Theme) => {
-      setTheme(theme);
+    setTheme: (t: Theme) => {
+      try {
+        localStorage.setItem("theme", t);
+      } catch (e) {
+        /* ignore */
+      }
+      setThemeState(t);
     },
   };
 
