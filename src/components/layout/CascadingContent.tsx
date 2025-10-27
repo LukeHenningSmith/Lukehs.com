@@ -2,11 +2,15 @@ import { motion } from "framer-motion";
 import type { ReactNode } from "react";
 
 const contentVariants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 10 },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: i * 0.2, duration: 0.5, ease: "easeOut" as const },
+    transition: {
+      delay: i * 0.2 + 0.1,
+      duration: 1,
+      ease: "easeOut" as const,
+    },
   }),
 };
 
