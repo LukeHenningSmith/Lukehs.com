@@ -6,12 +6,18 @@ import type { ReactNode } from "react";
 export function scrollToId(id: string) {
   const el = document.getElementById(id);
   if (!el) return;
+
   if (window.history && window.history.replaceState) {
     window.history.replaceState(null, "", `#${id}`);
   } else {
     window.location.hash = id;
   }
-  el.scrollIntoView({ behavior: "smooth", block: "start" });
+
+  const top = window.scrollY + el.getBoundingClientRect().top;
+
+  window.scrollTo({ top: Math.max(0, Math.round(top)), behavior: "smooth" });
+
+  // el.scrollIntoView({ behavior: "smooth", block: "start" });
   el.setAttribute("tabindex", "-1");
   (el as HTMLElement).focus({ preventScroll: true });
 }
