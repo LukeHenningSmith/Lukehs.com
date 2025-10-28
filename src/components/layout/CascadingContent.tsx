@@ -22,7 +22,7 @@ export default function CascadingContent({
   return (
     <div className="space-y-16">
       {content.map((element, i) => (
-        <motion.p
+        <motion.div
           key={i}
           custom={i}
           variants={contentVariants}
@@ -30,7 +30,7 @@ export default function CascadingContent({
           animate="visible"
         >
           {element}
-        </motion.p>
+        </motion.div>
       ))}
     </div>
   );
