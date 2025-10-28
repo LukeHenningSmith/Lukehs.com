@@ -26,22 +26,26 @@ export function ThemeProvider({
 }: ThemeProviderProps) {
   const getInitialTheme = (): Theme => {
     if (typeof window === "undefined") return defaultTheme;
+
+    // Prefer local storage
     try {
       const stored = localStorage.getItem("theme");
       if (stored === "dark" || stored === "light") return stored;
     } catch (e) {
       /* ignore */
     }
+
     if (
       window.matchMedia &&
       window.matchMedia("(prefers-color-scheme: dark)").matches
     )
       return "dark";
-    return defaultTheme;
+    else return "light";
   };
 
   const [theme, setThemeState] = useState<Theme>(getInitialTheme);
 
+  // Keeps local-storage up to date with theme
   useEffect(() => {
     if (typeof window === "undefined") return;
     const root = window.document.documentElement;
@@ -54,40 +58,9 @@ export function ThemeProvider({
     }
   }, [theme]);
 
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    try {
-      const stored = localStorage.getItem("theme");
-      if (stored === "dark" || stored === "light") return; // user preference wins
-
-      const mq = window.matchMedia("(prefers-color-scheme: dark)");
-      const onChange = (e: MediaQueryListEvent | MediaQueryList) => {
-        setThemeState(e.matches ? "dark" : "light");
-      };
-      if (mq.addEventListener) mq.addEventListener("change", onChange as any);
-      else if ((mq as any).addListener) (mq as any).addListener(onChange);
-
-      return () => {
-        if (mq.removeEventListener)
-          mq.removeEventListener("change", onChange as any);
-        else if ((mq as any).removeListener)
-          (mq as any).removeListener(onChange);
-      };
-    } catch (e) {
-      /* ignore */
-    }
-  }, []);
-
   const value = {
     theme,
-    setTheme: (t: Theme) => {
-      try {
-        localStorage.setItem("theme", t);
-      } catch (e) {
-        /* ignore */
-      }
-      setThemeState(t);
-    },
+    setTheme: setThemeState,
   };
 
   return (
