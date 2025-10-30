@@ -30,7 +30,7 @@ export function Experience() {
     {
       id: "react",
       label: "React",
-      imgSrc: "/tech-icons/react-logo.svg",
+      imgSrc: "/tech-icons/react-logo-large.svg",
       url: "https://reactjs.org/",
     },
     {
