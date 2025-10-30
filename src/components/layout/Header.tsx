@@ -1,7 +1,7 @@
 import { Github, Mail, Linkedin } from "lucide-react";
 import { Button } from "../ui/button";
 import { ModeToggle } from "../theme/ModeToggle";
-import type { ReactNode } from "react";
+import { useEffect, type ReactNode } from "react";
 
 export function scrollToId(id: string) {
   const el = document.getElementById(id);
@@ -13,11 +13,11 @@ export function scrollToId(id: string) {
     window.location.hash = id;
   }
 
-  const top = window.scrollY + el.getBoundingClientRect().top;
+  const offset = 36;
+  const top = window.scrollY + el.getBoundingClientRect().top - offset;
 
   window.scrollTo({ top: Math.max(0, Math.round(top)), behavior: "smooth" });
 
-  // el.scrollIntoView({ behavior: "smooth", block: "start" });
   el.setAttribute("tabindex", "-1");
   (el as HTMLElement).focus({ preventScroll: true });
 }
@@ -26,6 +26,31 @@ export const subtleButtonStyle =
   "cursor-pointer text-muted-foreground hover:text-primary bg-transparent hover:bg-transparent dark:hover:bg-transparent dark:bg-transparent";
 
 function Header() {
+  useEffect(() => {
+    // Prevent browser from restoring scroll position automatically for navigations.
+    const prev =
+      (window.history && (window.history as any).scrollRestoration) ||
+      undefined;
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
+
+    // If there's a hash on load, wait until layout is ready then run our smooth scroll.
+    const hash = location.hash.replace(/^#/, "");
+    if (hash) {
+      // Two RAFs to ensure DOM layout is painted and React/SSR content is present.
+      requestAnimationFrame(() =>
+        requestAnimationFrame(() => scrollToId(hash))
+      );
+    }
+
+    return () => {
+      if ("scrollRestoration" in window.history) {
+        (window.history as any).scrollRestoration = prev ?? "auto";
+      }
+    };
+  }, []);
+
   const renderTextButton = ({ id, label }: { id: string; label: string }) => {
     return (
       <Button
