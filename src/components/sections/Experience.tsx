@@ -87,8 +87,9 @@ export function Experience({ animationOffset }: { animationOffset?: number }) {
     return (
       <FadeUp
         delay={(animationOffset ?? 0) + index * (ANIMATION_GAP / roles.length)}
+        key={r.key}
       >
-        <div key={r.key} className="flex gap-1 text-muted-foreground">
+        <div className="flex gap-1 text-muted-foreground">
           <div className="flex mx-1 w-[60px]">
             <div className="flex w-full justify-center mt-1.75 relative">
               <div className="w-2.5 h-2.5 rounded-full bg-muted-foreground" />
