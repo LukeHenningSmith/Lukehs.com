@@ -4,19 +4,20 @@ import { ThemeProvider } from "./components/theme/theme-provider";
 import { PageContainer } from "./components/layout/PageContainer";
 import { Footer } from "./components/layout/Footer";
 import Header from "./components/layout/Header";
+import ScrollTop from "./components/layout/ScrollTopButton";
 
 function App() {
   return (
     <ThemeProvider defaultTheme="dark">
-      <div className="flex flex-col min-h-screen">
-        <SkiTracks />
+      <SkiTracks />
 
-        <Header />
+      <Header />
 
-        <PageContainer />
+      <PageContainer />
 
-        <Footer />
-      </div>
+      <ScrollTop />
+
+      <Footer />
     </ThemeProvider>
   );
 }
