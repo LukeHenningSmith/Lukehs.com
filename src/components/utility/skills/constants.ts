@@ -33,7 +33,8 @@ export const SKILLS: Record<string, SkillItem> = {
   [AWS_SKILL]: {
     id: "aws",
     label: "AWS",
-    imgSrc: "/tech-icons/aws-logo.png",
+    imgSrc: "/tech-icons/aws-logo-light.png",
+    imgSrcDark: "/tech-icons/aws-logo-dark.png",
     url: "https://aws.amazon.com",
   },
   [DOCKER_SKILL]: {
@@ -69,7 +70,8 @@ export const SKILLS: Record<string, SkillItem> = {
   [GITHUB_ACTIONS_SKILL]: {
     id: "github-actions",
     label: "GitHub Actions",
-    imgSrc: "/tech-icons/github-logo.svg",
+    imgSrc: "/tech-icons/github-logo-light.svg",
+    imgSrcDark: "/tech-icons/github-logo-dark.png",
     url: "https://github.com/features/actions",
   },
 };

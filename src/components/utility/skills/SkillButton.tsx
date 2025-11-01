@@ -14,7 +14,25 @@ export function SkillButton({ skill }: { skill: SkillItem }) {
         if (newWindow) newWindow.opener = null;
       }}
     >
-      <img src={skill.imgSrc} width={20} />
+      {skill.imgSrcDark ? (
+        <>
+          <img
+            src={skill.imgSrc}
+            alt="Logo"
+            className="block dark:hidden"
+            width={20}
+          />
+          <img
+            src={skill.imgSrcDark}
+            alt="Logo"
+            className="hidden dark:block"
+            width={20}
+          />
+        </>
+      ) : (
+        <img src={skill.imgSrc} width={20} />
+      )}
+
       {skill.label}
     </Button>
   );
