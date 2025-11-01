@@ -20,9 +20,9 @@ function App() {
     node: FC<{ animationOffset?: number }>;
   }[] = [
     { key: "intro", node: Intro },
+    { key: "projects", node: Projects },
     { key: "experience", node: Experience },
     { key: "education", node: Education },
-    { key: "projects", node: Projects },
     { key: "skiing", node: Skiing },
   ];
 

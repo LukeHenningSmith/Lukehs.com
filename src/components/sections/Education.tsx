@@ -5,7 +5,7 @@ export function Education({ animationOffset }: { animationOffset?: number }) {
   return (
     <Section id="education" title="Education" animationOffset={animationOffset}>
       <FadeUp delay={animationOffset}>
-        <div className="flex gap-1 text-muted-foreground">
+        <div className="flex gap-2 text-muted-foreground">
           <div className="flex mx-2 w-[50px] align-middle justify-center">
             <img
               src="/usyd-logo-light.png"
@@ -30,7 +30,7 @@ export function Education({ animationOffset }: { animationOffset?: number }) {
             </div>
           </div>
         </div>
-        <div className="flex gap-1">
+        <div className="flex gap-2">
           <div className="flex mx-1 w-[60px] align-middle justify-center"></div>
 
           <div className="flex-1">

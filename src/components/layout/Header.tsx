@@ -117,9 +117,9 @@ function Header() {
 
           <div className="flex items-center">
             <div className="hidden min-[640px]:flex items-center">
+              {renderTextButton({ id: "projects", label: "Projects" })}
               {renderTextButton({ id: "experience", label: "Experience" })}
               {renderTextButton({ id: "education", label: "Education" })}
-              {renderTextButton({ id: "projects", label: "Projects" })}
               {renderTextButton({ id: "skiing", label: "Skiing" })}
             </div>
 

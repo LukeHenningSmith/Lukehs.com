@@ -89,7 +89,7 @@ export function Experience({ animationOffset }: { animationOffset?: number }) {
         delay={(animationOffset ?? 0) + index * (ANIMATION_GAP / roles.length)}
         key={r.key}
       >
-        <div className="flex gap-1 text-muted-foreground">
+        <div className="flex gap-2 text-muted-foreground">
           <div className="flex mx-1 w-[60px]">
             <div className="flex w-full justify-center mt-1.75 relative">
               <div className="w-2.5 h-2.5 rounded-full bg-muted-foreground" />
@@ -110,7 +110,7 @@ export function Experience({ animationOffset }: { animationOffset?: number }) {
               </div>
 
               {r.bullets && r.bullets.length > 0 && (
-                <ul className="list-disc pl-5">
+                <ul className="list-disc pl-5 flex flex-col gap-1">
                   {r.bullets.map((b, i) => (
                     <li key={i}>{b}</li>
                   ))}
@@ -138,7 +138,7 @@ export function Experience({ animationOffset }: { animationOffset?: number }) {
       {/* Company */}
 
       <FadeUp delay={animationOffset}>
-        <div className="flex gap-1 text-muted-foreground">
+        <div className="flex gap-2 text-muted-foreground">
           <div className="flex mx-2 w-[50px] items-center justify-center">
             <img
               className="w-[50px] h-auto object-contain"
