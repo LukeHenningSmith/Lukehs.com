@@ -1,4 +1,4 @@
-export type Skill = {
+export type SkillItem = {
   id: string;
   label: string;
   imgSrc: string;

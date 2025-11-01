@@ -1,11 +1,12 @@
-import LinkableHeading from "../LinkableHeading";
+import { FadeUp } from "../layout/FadeUp";
+import { Section } from "../utility/Section";
 
-export function Skiing() {
+export function Skiing({ animationOffset }: { animationOffset?: number }) {
   return (
-    <div className="flex flex-col gap-4">
-      <LinkableHeading id="skiing">Skiing</LinkableHeading>
-
-      <span className="text-muted-foreground">Coming soon...</span>
-    </div>
+    <Section id="skiing" title="Skiing" animationOffset={animationOffset}>
+      <FadeUp delay={animationOffset}>
+        <span className="text-muted-foreground">Coming soon...</span>
+      </FadeUp>
+    </Section>
   );
 }

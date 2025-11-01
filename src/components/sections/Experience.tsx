@@ -1,7 +1,28 @@
-import LinkableHeading from "../LinkableHeading";
-import { Skills } from "../Skills";
+import type { SkillItem } from "@/types";
+import {
+  AWS_SKILL,
+  DOCKER_SKILL,
+  PYTHON_SKILL,
+  REACT_SKILL,
+  SKILLS,
+  TS_SKILL,
+} from "../utility/skills/constants";
+import { SkillsContainer } from "../utility/skills/SkillsContainer";
+import { Section } from "../utility/Section";
+import { FadeUp } from "../layout/FadeUp";
+import { ANIMATION_GAP } from "@/constants";
 
-export function Experience() {
+type RoleConfig = {
+  key: string;
+  title: string;
+  employmentType?: string;
+  duration: string;
+  bullets?: string[];
+  skills?: SkillItem[];
+  firstRole?: boolean;
+};
+
+export function Experience({ animationOffset }: { animationOffset?: number }) {
   function calculateDurationFrom(startDate: string): string {
     const start = new Date(startDate); // Parse the start date
     const now = new Date(); // Current date
@@ -20,161 +41,125 @@ export function Experience() {
     return years > 0 ? `${yearText} ${monthText}` : monthText;
   }
 
-  const skills = [
+  const skills: SkillItem[] = [
+    SKILLS[AWS_SKILL],
+    SKILLS[REACT_SKILL],
+    SKILLS[TS_SKILL],
+    SKILLS[PYTHON_SKILL],
+    SKILLS[DOCKER_SKILL],
+  ];
+
+  // configurable roles data (customise content here)
+  const roles: RoleConfig[] = [
     {
-      id: "typescript",
-      label: "Typescript",
-      imgSrc: "/tech-icons/typescript-logo.png",
-      url: "https://www.typescriptlang.org/",
+      key: "role-1",
+      title: "Software Engineer",
+      employmentType: "Full-time",
+      duration: `Jul 2025 - Present · ${calculateDurationFrom("2025-06-30")}`,
+      bullets: ["Frontend lead for the new IB&M credit origination platform"],
+      skills,
     },
     {
-      id: "react",
-      label: "React",
-      imgSrc: "/tech-icons/react-logo.png",
-      url: "https://reactjs.org/",
+      key: "role-2",
+      title: "Associate Software Engineer",
+      employmentType: "Full-time",
+      duration: "Aug 2024 - June 2025 · 11 mos",
+      bullets: [
+        "Undertook the graduate-level role full-time during my final five months of university",
+      ],
+      skills,
     },
     {
-      id: "python",
-      label: "Python",
-      imgSrc: "/tech-icons/python-logo.svg",
-      url: "https://www.python.org/",
-    },
-    {
-      id: "aws",
-      label: "AWS",
-      imgSrc: "/tech-icons/aws-logo.png",
-      url: "https://www.aws.com/",
-    },
-    {
-      id: "docker",
-      label: "Docker",
-      imgSrc: "/tech-icons/docker-logo.png",
-      url: "https://www.docker.com/",
+      key: "role-3",
+      title: "Quant Apps Engineer",
+      employmentType: "Internship",
+      duration: "Feb 2024 - Jul 2024 · 6 mos",
+      bullets: [
+        "Built a tool that is now used daily by risk analysts across IB&M",
+        "Completed my thesis for CBA investigating component library use in Fin-tech applications",
+      ],
+      skills,
+      firstRole: true,
     },
   ];
 
+  const renderRole = (r: RoleConfig, index: number) => {
+    return (
+      <FadeUp
+        delay={(animationOffset ?? 0) + index * (ANIMATION_GAP / roles.length)}
+      >
+        <div key={r.key} className="flex gap-1 text-muted-foreground">
+          <div className="flex mx-1 w-[60px]">
+            <div className="flex w-full justify-center mt-1.75 relative">
+              <div className="w-2.5 h-2.5 rounded-full bg-muted-foreground" />
+              {!r.firstRole && (
+                <div className="absolute top-4 w-[1px] h-full bg-muted-foreground" />
+              )}
+            </div>
+          </div>
+
+          <div className="flex-1">
+            <div className="flex flex-col gap-2">
+              <div className="flex flex-col">
+                <div className="text-primary font-bold">{r.title}</div>
+                {r.employmentType && (
+                  <div className="text-primary">{r.employmentType}</div>
+                )}
+                <div>{r.duration}</div>
+              </div>
+
+              {r.bullets && r.bullets.length > 0 && (
+                <ul className="list-disc pl-5">
+                  {r.bullets.map((b, i) => (
+                    <li key={i}>{b}</li>
+                  ))}
+                </ul>
+              )}
+
+              {r.skills && r.skills.length > 0 && (
+                <div className="mb-2">
+                  <SkillsContainer skills={r.skills} />
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </FadeUp>
+    );
+  };
+
   return (
-    <div className="flex flex-col gap-4">
-      <LinkableHeading id="experience">Experience</LinkableHeading>
-
+    <Section
+      id="experience"
+      title="Experience"
+      animationOffset={animationOffset}
+    >
       {/* Company */}
-      <div className="flex gap-1 text-muted-foreground">
-        <div className="flex mx-2 w-[50px] items-center justify-center">
-          <img
-            className="w-[50px] h-auto object-contain"
-            src="/cba-logo.png"
-            alt="Commonwealth Bank logo"
-          />
-        </div>
 
-        <div className="flex-1">
-          <div className="flex flex-col">
-            <div className="text-primary font-bold">Commonwealth Bank</div>
-            <div className="text-primary">
-              {calculateDurationFrom("2024-01-01")}
-            </div>
-            <div>Sydney, New South Wales, Australia · On-site</div>
+      <FadeUp delay={animationOffset}>
+        <div className="flex gap-1 text-muted-foreground">
+          <div className="flex mx-2 w-[50px] items-center justify-center">
+            <img
+              className="w-[50px] h-auto object-contain"
+              src="/cba-logo.png"
+              alt="Commonwealth Bank logo"
+            />
           </div>
-        </div>
-      </div>
 
-      {/* Role 1 */}
-      <div className="flex gap-1 text-muted-foreground ">
-        <div className="flex mx-1 w-[60px]">
-          <div className="flex w-full justify-center mt-1.75 relative">
-            <div className="w-2.5 h-2.5 rounded-full bg-muted-foreground" />
-            <div className="absolute top-4 w-[1px] h-full bg-muted-foreground" />
-          </div>
-        </div>
-
-        <div className="flex-1">
-          <div className="flex flex-col gap-2">
+          <div className="flex-1">
             <div className="flex flex-col">
-              <div className="text-primary font-bold">Software Engineer</div>
-              <div className="text-primary">Full-time</div>
-              <div>
-                Jul 2025 - Present · {calculateDurationFrom("2025-06-30")}
+              <div className="text-primary font-bold">Commonwealth Bank</div>
+              <div className="text-primary">
+                {calculateDurationFrom("2024-01-01")}
               </div>
-            </div>
-
-            <ul className="list-disc pl-5">
-              <li>
-                Frontend lead for the new IB&M credit origination platform
-              </li>
-            </ul>
-
-            <div className="mb-2">
-              <Skills skills={skills} />
+              <div>Sydney, New South Wales, Australia · On-site</div>
             </div>
           </div>
         </div>
-      </div>
+      </FadeUp>
 
-      {/* Role 2 */}
-      <div className="flex gap-1 text-muted-foreground">
-        <div className="flex mx-1 w-[60px]">
-          <div className="flex w-full justify-center mt-1.75 relative">
-            <div className="w-2.5 h-2.5 rounded-full bg-muted-foreground" />
-            <div className="absolute top-4 w-[1px] h-full bg-muted-foreground" />
-          </div>
-        </div>
-
-        <div className="flex-1">
-          <div className="flex flex-col gap-2">
-            <div className="flex flex-col">
-              <div className="text-primary font-bold">
-                Associate Software Engineer
-              </div>
-              <div className="text-primary">Full-time</div>
-              <div>Aug 2024 - June 2025 · 11 mos</div>
-            </div>
-
-            <ul className="list-disc pl-5">
-              <li>
-                Undertook the graduate-level role full-time during my final five
-                months of university
-              </li>
-            </ul>
-
-            <div className="mb-2">
-              <Skills skills={skills} />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Role 3 */}
-      <div className="flex gap-1 text-muted-foreground">
-        <div className="flex mx-1 w-[60px]">
-          <div className="flex w-full justify-center mt-1.75 relative">
-            <div className="w-2.5 h-2.5 rounded-full bg-muted-foreground" />
-          </div>
-        </div>
-
-        <div className="flex-1">
-          <div className="flex flex-col gap-2">
-            <div className="flex flex-col">
-              <div className="text-primary font-bold">Quant Apps Engineer</div>
-              <div className="text-primary">Internship</div>
-              <div>Feb 2024 - Jul 2024 · 6 mos</div>
-            </div>
-
-            <ul className="list-disc pl-5">
-              <li>
-                Built a tool that is now used daily by risk analysts across IB&M
-              </li>
-              <li>
-                Completed my thesis for CBA investigating component library use
-                in Fin-tech applications
-              </li>
-            </ul>
-
-            <div className="mb-2">
-              <Skills skills={skills} />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+      {/* Roles */}
+      <div className="space-y-4">{roles.map(renderRole)}</div>
+    </Section>
   );
 }
