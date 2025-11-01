@@ -34,7 +34,7 @@ export const SKILLS: Record<string, SkillItem> = {
   [DOCKER_SKILL]: {
     id: "docker",
     label: "Docker",
-    imgSrc: "/tech-icons/docker-logo.svg",
+    imgSrc: "/tech-icons/docker-logo.png",
     url: "https://www.docker.com",
   },
 };
