@@ -10,6 +10,7 @@ import {
   VITEST_SKILL,
   VITE_SKILL,
   AWS_SKILL,
+  PYTHON_SKILL,
 } from "../utility/skills/constants";
 import { Button } from "../ui/button";
 import { ExternalLink, Github } from "lucide-react";
@@ -93,6 +94,21 @@ export const PROJECTS: ProjectConfig[] = [
     skills: [AWS_SKILL, TS_SKILL, REACT_SKILL, TAILWINDCSS_SKILL],
     // sourceUrl: "https://github.com/LukeHenningSmith/wyd", //TODO
     liveUrl: "https://lukehs.com",
+  },
+  {
+    key: "formula-quiz",
+    title: "Formula Quiz",
+    subtitle: "Website - In Development",
+    year: "2026*",
+    logo: <img src="/project-icons/formula-quiz-logo.webp" alt="Logo" />,
+    bullets: [
+      [
+        "An in-development F1 quiz website for fans to test their knowledge on everything Formula 1",
+      ],
+      ["Built using web-sockets for real-time interactivity and engagement"],
+      ["Planned release Jan 2026"],
+    ],
+    skills: [PYTHON_SKILL, TS_SKILL, REACT_SKILL, AWS_SKILL],
   },
 ];
 
