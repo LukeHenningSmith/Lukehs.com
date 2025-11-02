@@ -69,7 +69,10 @@ export function Education({ animationOffset }: { animationOffset?: number }) {
                 variant={"outline"}
                 size={"sm"}
                 title="View academic transcript"
-                className="group relative cursor-pointer text-muted-foreground bg-transparent hover:text-blue-600 hover:bg-blue-600/10 hover:border-blue-600 dark:hover:text-blue-300 dark:bg-transparent dark:hover:bg-blue-600/10 dark:hover:border-blue-600 transition-colors duration-200 ease-in-out"
+                className="group relative cursor-pointer text-primary border-primary dark:border-primary  bg-transparent 
+                hover:text-blue-600 hover:bg-blue-600/10 hover:border-blue-600 dark:hover:text-blue-300 
+                dark:bg-transparent dark:hover:bg-blue-600/10 dark:hover:border-blue-600 transition-colors 
+                duration-200 ease-in-out"
                 onClick={() => {
                   const newWindow = window.open(
                     "https://www.myequals.net/sharelink/f8269a17-4f0c-4a01-b1c1-30bfbab6ea71/10d20b81-93a9-4dfe-b905-bbf59cd6de24",

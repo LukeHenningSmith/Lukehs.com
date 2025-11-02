@@ -22,7 +22,7 @@ body {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  opacity: 0.12;
+  opacity: 0.08;
   filter: saturate(0.6) brightness(0.9);
   will-change: transform, opacity;
 }

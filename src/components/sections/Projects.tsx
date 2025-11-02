@@ -189,7 +189,7 @@ export function Projects({ animationOffset }: { animationOffset?: number }) {
                     variant={"outline"}
                     size={"sm"}
                     title="View source code on GitHub"
-                    className="cursor-pointer text-muted-foreground bg-transparent 
+                    className="cursor-pointer text-primary border-primary dark:border-primary bg-transparent 
                 hover:text-[#F05033] hover:bg-[#F05033]/10
                 hover:border-[#F05033] dark:hover:text-[#F05033] dark:bg-transparent 
                 dark:hover:bg-[#F05033]/10 dark:hover:border-[#F05033] transition-colors duration-200 ease-in-out"
@@ -218,7 +218,10 @@ export function Projects({ animationOffset }: { animationOffset?: number }) {
                         variant={"outline"}
                         size={"sm"}
                         title="View project"
-                        className="group relative cursor-pointer text-muted-foreground bg-transparent hover:text-blue-600 hover:bg-blue-600/10 hover:border-blue-600 dark:hover:text-blue-300 dark:bg-transparent dark:hover:bg-blue-600/10 dark:hover:border-blue-600 transition-colors duration-200 ease-in-out"
+                        className="group relative cursor-pointer text-primary border-primary dark:border-primary bg-transparent 
+                        hover:text-blue-600 hover:bg-blue-600/10 hover:border-blue-600 dark:hover:text-blue-300 
+                        dark:bg-transparent dark:hover:bg-blue-600/10 dark:hover:border-blue-600 transition-colors 
+                        duration-200 ease-in-out"
                         onClick={() => {
                           if (project.liveUrl === "https://lukehs.com") {
                             setIsTooltipOpen(true);
