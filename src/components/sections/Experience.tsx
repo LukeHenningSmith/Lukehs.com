@@ -52,7 +52,6 @@ export function Experience({ animationOffset }: { animationOffset?: number }) {
       duration: `Jul 2025 - Present · ${calculateDurationFrom("2025-06-30")}`,
       bullets: [
         "Frontend lead for the new IB&M credit origination web platform",
-        "Continued to support and add new frontend features to my delivered IB&M tool based on user feedback",
         "Undertook AWS training and certification to support the bank-wide migration to AWS",
         "Responsible for mentoring and supporting new members of the team with onboarding, best practices and code reviews",
       ],

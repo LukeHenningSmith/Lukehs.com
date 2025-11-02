@@ -2,39 +2,50 @@ import { useEffect, useRef, useState } from "react";
 import { FadeUp } from "../layout/FadeUp";
 import { Section } from "../utility/Section";
 import { ANIMATION_GAP } from "@/constants";
+import { Button } from "../ui/button";
 
 type SkiImage = {
   src: string;
   alt?: string;
   location: string;
+  description?: string;
   time: string;
 };
 
 const IMAGES: SkiImage[] = [
   // TODO: Add a description of something fun there
   {
-    src: "/mountain.jpg",
+    src: "/skiing-photos/zao_2025.JPG",
     alt: "Ridge",
-    location: "Thredbo, Australia",
-    time: "Jul 2025",
-  },
-  {
-    src: "/mountain.jpg",
-    alt: "Powder line",
-    location: "Hakuba, Japan",
+    location: "Zao Onsen, Japan",
     time: "Jan 2025",
   },
   {
-    src: "/mountain.jpg",
-    alt: "Tree run",
-    location: "Zao, Japan",
+    src: "/skiing-photos/zao_2025_2.JPG",
+    alt: "Ridge",
+    location: "Zao Onsen, Japan",
+    time: "Jan 2025",
+  },
+  {
+    src: "/skiing-photos/myoko_2025.JPG",
+    alt: "Ridge",
+    location: "Myoko Kogen, Japan",
+    time: "Jan 2025",
+  },
+  {
+    src: "/skiing-photos/myoko_2019_jan.JPG",
+    alt: "Ridge",
+    location: "Myoko Kogen, Japan",
+    description: "Powder skiing in snow fall of 1m+ / week",
     time: "Jan 2019",
   },
   {
-    src: "/mountain.jpg",
-    alt: "Summit",
+    src: "/skiing-photos/vermont_2017_dec.JPG",
+    alt: "Ridge",
     location: "Vermont, USA",
-    time: "XXX 2017",
+    description:
+      "Skiing in a record breaking cold-snap with temperatures below -28°C",
+    time: "Dec 2017",
   },
 ];
 
@@ -86,7 +97,8 @@ export function Skiing({ animationOffset }: { animationOffset?: number }) {
     <Section id="skiing" title="Skiing" animationOffset={animationOffset}>
       <FadeUp delay={animationOffset}>
         <p className="my-2 text-muted-foreground">
-          The unique places I have visited:
+          Life-long skiier - recent snowboarder. Some of the places I have
+          visited include:
         </p>
       </FadeUp>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -118,7 +130,16 @@ export function Skiing({ animationOffset }: { animationOffset?: number }) {
                 <div className="text-sm font-semibold drop-shadow">
                   {img.location}
                 </div>
-                <div className="text-xs opacity-90 drop-shadow">{img.time}</div>
+
+                {img.description && (
+                  <div className="text-xs opacity-90 drop-shadow">
+                    {img.description}
+                  </div>
+                )}
+
+                <div className="text-xs opacity-90 drop-shadow text-muted-foreground">
+                  {img.time}
+                </div>
               </div>
             </div>
           </FadeUp>
@@ -146,34 +167,45 @@ export function Skiing({ animationOffset }: { animationOffset?: number }) {
               }}
             />
 
-            <button
-              className="absolute right-3 top-3 z-20 rounded-full bg-white/10 hover:bg-white/20 text-white p-2"
+            <Button
+              variant={"ghost"}
+              size={"icon"}
+              className="absolute right-3 top-3 cursor-pointer"
               onClick={handleClose}
               aria-label="Close enlarged image"
             >
               ✕
-            </button>
+            </Button>
 
             <div className="p-4 bg-gradient-to-t from-black/60 text-white">
               <div className="text-lg font-semibold">
                 {IMAGES[openIndex].location}
               </div>
-              <div className="text-sm opacity-90">{IMAGES[openIndex].time}</div>
+
+              {IMAGES[openIndex].description && (
+                <div className="text-xs opacity-90 drop-shadow">
+                  {IMAGES[openIndex].description}
+                </div>
+              )}
+              <div className="text-sm opacity-90 text-muted-foreground">
+                {IMAGES[openIndex].time}
+              </div>
             </div>
           </div>
         </div>
       ) : null}
 
-      {/* bucket list */}
       <FadeUp delay={(animationOffset ?? 0) + ANIMATION_GAP}>
         <div className="mt-6">
           <h3 className="text-primary mb-2">Skiing bucket list</h3>
           <ul className="list-disc pl-5 text-muted-foreground space-y-1">
-            <li>British Columbia, Canada — backcountry chutes</li>
-            <li>Alaska, USA — deep powder and big runs</li>
-            <li>New Zealand Southern Alps — long alpine descents</li>
-            <li>Russia / Kamchatka — remote volcano skiing</li>
-            <li>Heli-skiing - anywhere</li>
+            <li>Dolomites, Italy</li>
+            <li>Val Thorens, France</li>
+            <li>Mt Hutt, New Zealand</li>
+            <li>St Moritz, Switzerland</li>
+            <li>
+              <i>Heli-skiing - anywhere</i>
+            </li>
           </ul>
         </div>
       </FadeUp>

@@ -54,7 +54,7 @@ export const PROJECTS: ProjectConfig[] = [
         { label: "Tanstack-Query", url: "https://tanstack.com/query" },
       ],
       [
-        "Renders 10,000+ row tables nearly instantly using virtualisation using ",
+        "Renders 10,000+ row tables nearly instantly using virtualisation with ",
         {
           label: "react-window",
           url: "https://github.com/bvaughn/react-window",
@@ -87,7 +87,7 @@ export const PROJECTS: ProjectConfig[] = [
     ),
     bullets: [
       ["A website to showcase my projects, experience, skills and hobbies"],
-      ["Custom deployed and hosted on AWS using S3, CloudFront and Route53"],
+      ["Custom deployed to AWS using S3, CloudFront and Route53"],
       [
         "Built with a focus on performance, animation, mobile support and modern design principles",
       ],
