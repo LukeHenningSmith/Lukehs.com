@@ -1,9 +1,10 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { FadeUp } from "../layout/FadeUp";
 import { Section } from "../utility/Section";
 import { ANIMATION_GAP } from "@/constants";
 import { Button } from "../ui/button";
 import { ArrowLeft, ArrowRight } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 type SkiImage = {
   src: string;
@@ -13,7 +14,6 @@ type SkiImage = {
 };
 
 const IMAGES: SkiImage[] = [
-  // TODO: Add a description of something fun there
   {
     src: "/skiing-photos/zao_2025.JPG",
     alt: "Ridge",
@@ -46,19 +46,11 @@ const IMAGES: SkiImage[] = [
   },
 ];
 
+const ARROW_BUTTON_STYLE =
+  "z-20 mx-2 cursor-pointer text-secondary hover:text-muted-foreground bg-transparent hover:bg-transparent dark:hover:bg-transparent dark:bg-transparent dark:text-primary dark:hover:text-muted-foreground";
+
 export function Skiing({ animationOffset }: { animationOffset?: number }) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
-  const [isClosing, setIsClosing] = useState(false);
-  const prefersReduced =
-    typeof window !== "undefined" &&
-    window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
-  const closeTimeoutRef = useRef<number | null>(null);
-
-  useEffect(() => {
-    return () => {
-      if (closeTimeoutRef.current) window.clearTimeout(closeTimeoutRef.current);
-    };
-  }, []);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -70,25 +62,8 @@ export function Skiing({ animationOffset }: { animationOffset?: number }) {
     return () => window.removeEventListener("keydown", onKey);
   }, [openIndex]);
 
-  const handleOpen = (i: number) => {
-    setIsClosing(false);
-    setOpenIndex(i);
-  };
-
-  const handleClose = () => {
-    if (prefersReduced) {
-      setOpenIndex(null);
-      setIsClosing(false);
-      return;
-    }
-    setIsClosing(true);
-    // match transition duration below (200ms)
-    closeTimeoutRef.current = window.setTimeout(() => {
-      setOpenIndex(null);
-      setIsClosing(false);
-      closeTimeoutRef.current = null;
-    }, 220);
-  };
+  const handleOpen = (i: number) => setOpenIndex(i);
+  const handleClose = () => setOpenIndex(null);
 
   return (
     <Section id="skiing" title="Skiing" animationOffset={animationOffset}>
@@ -146,85 +121,99 @@ export function Skiing({ animationOffset }: { animationOffset?: number }) {
         ))}
       </div>
 
-      {/* Modal / lightbox for enlarged image */}
-      {openIndex !== null ? (
-        <div
-          className={`fixed inset-0 z-50 flex items-center justify-center bg-black/70 
-            ${isClosing ? "opacity-0" : "opacity-100"} transition-opacity duration-300 gap-4`}
-          onClick={handleClose}
-          role="dialog"
-          aria-modal="true"
-        >
-          <div>
+      {/* Modal / lightbox for enlarged image (framer-motion: opening + closing) */}
+      <AnimatePresence initial={false} mode="wait">
+        {openIndex !== null && (
+          <motion.div
+            key="ski-lightbox"
+            className="fixed inset-0 z-50 flex items-center justify-center"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.18 }}
+            onClick={handleClose}
+            role="dialog"
+            aria-modal="true"
+          >
+            <motion.div
+              className="absolute inset-0 bg-black/70"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.18 }}
+            />
+
             <Button
               onClick={(e) => {
                 e.stopPropagation();
                 openIndex > 0 && handleOpen(openIndex - 1);
               }}
               variant={"ghost"}
-              className="cursor-pointer text-secondary hover:text-muted-foreground bg-transparent 
-              hover:bg-transparent dark:hover:bg-transparent dark:bg-transparent dark:text-primary dark:hover:text-muted-foreground"
+              className={ARROW_BUTTON_STYLE}
               size={"icon-lg"}
               disabled={openIndex === 0}
             >
               <ArrowLeft />
             </Button>
-          </div>
 
-          <div
-            className={`relative max-w-[90%] max-h-[85%] w-[min(1100px,90%)] rounded-lg 
-              overflow-hidden bg-black`}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <img
-              src={IMAGES[openIndex].src}
-              alt={IMAGES[openIndex].alt ?? IMAGES[openIndex].location}
-              className={`w-full h-[70vh] object-cover transition-transform duration-200 
-                ${isClosing ? "translate-y-6 opacity-0" : "translate-y-0 opacity-100"}`}
-              style={{
-                transitionTimingFunction: "cubic-bezier(0.2,0.8,0.2,1)",
+            {/* Modal content */}
+            <motion.div
+              className="relative max-w-[90%] max-h-[85%] w-[min(1100px,90%)] rounded-lg overflow-hidden bg-black z-10"
+              onClick={(e) => e.stopPropagation()}
+              initial={{ scale: 0.96, y: 8, opacity: 0 }}
+              animate={{ scale: 1, y: 0, opacity: 1 }}
+              exit={{ scale: 0.96, y: 8, opacity: 0 }}
+              transition={{
+                duration: 0.22,
+                ease: [0.2, 0.8, 0.2, 1],
               }}
-            />
-
-            <Button
-              variant={"ghost"}
-              size={"icon"}
-              className="absolute right-3 top-3 cursor-pointer text-secondary hover:text-muted-foreground bg-transparent 
-              hover:bg-transparent dark:hover:bg-transparent dark:bg-transparent dark:text-primary dark:hover:text-muted-foreground"
-              onClick={handleClose}
-              aria-label="Close enlarged image"
             >
-              ✕
-            </Button>
+              <motion.img
+                src={IMAGES[openIndex].src}
+                alt={IMAGES[openIndex].alt ?? IMAGES[openIndex].location}
+                className="w-full h-[70vh] object-cover"
+                initial={{ scale: 1.02 }}
+                animate={{ scale: 1 }}
+                exit={{ scale: 1.02 }}
+                transition={{ duration: 0.35 }}
+              />
 
-            <div className="p-4 bg-gradient-to-t from-black/10 text-white flex flex-col gap-0.5">
-              <div className="text-lg font-semibold">
-                {IMAGES[openIndex].location}
+              <Button
+                variant={"ghost"}
+                size={"icon"}
+                className="absolute right-3 top-3 cursor-pointer text-secondary hover:text-muted-foreground bg-transparent 
+              hover:bg-transparent dark:hover:bg-transparent dark:bg-transparent dark:text-primary dark:hover:text-muted-foreground"
+                onClick={handleClose}
+                aria-label="Close enlarged image"
+              >
+                ✕
+              </Button>
+
+              <div className="p-4 bg-[#2D2D2D] opacity-70 text-white flex flex-col gap-0.5">
+                <div className="text-lg font-semibold">
+                  {IMAGES[openIndex].location}
+                </div>
+                <div className="text-sm opacity-80 text-[#cccccc]">
+                  {IMAGES[openIndex].time}
+                </div>
               </div>
+            </motion.div>
 
-              <div className="text-sm opacity-90 text-muted-foreground">
-                {IMAGES[openIndex].time}
-              </div>
-            </div>
-          </div>
-
-          <div>
             <Button
               onClick={(e) => {
                 e.stopPropagation();
                 openIndex < IMAGES.length - 1 && handleOpen(openIndex + 1);
               }}
               variant={"ghost"}
-              className="cursor-pointer text-secondary hover:text-muted-foreground bg-transparent 
-              hover:bg-transparent dark:hover:bg-transparent dark:bg-transparent dark:text-primary dark:hover:text-muted-foreground"
+              className={ARROW_BUTTON_STYLE}
               size={"icon-lg"}
               disabled={openIndex === IMAGES.length - 1}
             >
               <ArrowRight />
             </Button>
-          </div>
-        </div>
-      ) : null}
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <FadeUp delay={(animationOffset ?? 0) + ANIMATION_GAP}>
         <div className="mt-6">
