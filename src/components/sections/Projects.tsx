@@ -108,13 +108,20 @@ export const PROJECTS: ProjectConfig[] = [
     title: "Formula Quiz",
     subtitle: "Website - In Development",
     year: "2026*",
-    logo: <img src="/project-icons/formula-quiz-logo.webp" alt="Logo" />,
+    logo: (
+      <div className="text-4xl font-bold flex">
+        <span className="text-black dark:text-white">F</span>
+        <span className="text-red-600">Q</span>
+      </div>
+    ),
+
+    // logo: <img src="/project-icons/formula-quiz-logo.webp" alt="Logo" />,
     bullets: [
       [
         "An in-development F1 quiz website for fans to test their knowledge on everything Formula 1",
       ],
-      ["Built using web-sockets for real-time interactivity and engagement"],
-      ["Planned release Jan 2026"],
+      ["Built using web-sockets for real-time quizzes with others"],
+      ["*Planned release Jan 2026"],
     ],
     skills: [PYTHON_SKILL, TS_SKILL, REACT_SKILL, AWS_SKILL],
   },
