@@ -111,7 +111,7 @@ export const PROJECTS: ProjectConfig[] = [
     logo: (
       <div className="text-4xl font-bold flex">
         <span className="text-black dark:text-white">F</span>
-        <span className="text-red-600">Q</span>
+        <span className="text-[#8e51ff]">Q</span>
       </div>
     ),
 
@@ -120,10 +120,13 @@ export const PROJECTS: ProjectConfig[] = [
       [
         "An in-development F1 quiz website for fans to test their knowledge on everything Formula 1",
       ],
-      ["Built using web-sockets for real-time quizzes with others"],
-      ["*Planned release Jan 2026"],
+      [
+        "Built using web-sockets for real-time quizzes, leaderboards and competitions",
+      ],
+      ["*Planned release Feb 2026"],
     ],
     skills: [PYTHON_SKILL, TS_SKILL, REACT_SKILL, AWS_SKILL],
+    liveUrl: "https://formula-quiz.com",
   },
 ];
 
