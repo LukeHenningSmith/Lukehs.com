@@ -7,6 +7,7 @@ import { ArrowLeft, ArrowRight, MapPin } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Kbd, KbdGroup } from "../ui/kbd";
 import { useIsDesktop } from "@/hooks/hooks";
+import { useSwipeable } from "react-swipeable";
 
 type SkiImage = {
   src: string;
@@ -89,6 +90,24 @@ export function Skiing({ animationOffset }: { animationOffset?: number }) {
       document.body.style.overflow = prev;
     };
   }, [openIndex]);
+
+  const swipeHandlers = useSwipeable({
+    onSwiped: (eventData) => {
+      if (eventData.dir === "Left") {
+        // next image
+        if (openIndex !== null && openIndex < IMAGES.length - 1) {
+          handleOpen(openIndex + 1);
+        }
+      } else if (eventData.dir === "Right") {
+        // previous image
+        if (openIndex !== null && openIndex > 0) {
+          handleOpen(openIndex - 1);
+        }
+      } else {
+        handleClose();
+      }
+    },
+  });
 
   const handleOpen = (i: number) => setOpenIndex(i);
   const handleClose = () => setOpenIndex(null);
@@ -196,42 +215,7 @@ export function Skiing({ animationOffset }: { animationOffset?: number }) {
                 duration: 0.22,
                 ease: [0.2, 0.8, 0.2, 1],
               }}
-              /* swipe/drag support for mobile: vertical drag to close, horizontal for prev/next */
-              drag="y"
-              dragConstraints={{ top: 0, bottom: 0 }}
-              dragElastic={0.12}
-              onDragEnd={(_event, info) => {
-                // thresholds tuned for mobile gestures
-                const verticalThreshold = 120; // px
-                const verticalVelocity = 600; // px/s
-                const horizontalThreshold = 80; // px
-                const horizontalVelocity = 800; // px/s
-
-                // vertical swipe down to close
-                if (
-                  info.offset.y > verticalThreshold ||
-                  info.velocity.y > verticalVelocity
-                ) {
-                  handleClose();
-                  return;
-                }
-
-                // horizontal swipe to navigate
-                if (
-                  Math.abs(info.offset.x) > horizontalThreshold ||
-                  Math.abs(info.velocity.x) > horizontalVelocity
-                ) {
-                  if (info.offset.x < 0) {
-                    // swipe left -> next
-                    if (openIndex! < IMAGES.length - 1)
-                      handleOpen(openIndex! + 1);
-                  } else {
-                    // swipe right -> prev
-                    if (openIndex! > 0) handleOpen(openIndex! - 1);
-                  }
-                }
-              }}
-              style={{ touchAction: "pan-y" }}
+              {...swipeHandlers}
             >
               <motion.img
                 src={IMAGES[openIndex].src}
