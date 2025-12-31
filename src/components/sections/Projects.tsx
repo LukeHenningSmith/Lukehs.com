@@ -14,10 +14,11 @@ import {
   FRAMER_MOTION_SKILL,
 } from "../utility/skills/constants";
 import { Button } from "../ui/button";
-import { ExternalLink, Github } from "lucide-react";
+import { Github } from "lucide-react";
 import { useState, type ReactNode } from "react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 import { ANIMATION_GAP } from "@/constants";
+import { ViewProjectButton } from "../ViewProjectButton";
 
 type BulletPart = string | { label: string; url: string };
 
@@ -38,7 +39,7 @@ export const PROJECTS: ProjectConfig[] = [
     key: "wyd",
     title: "What you doing?",
     subtitle: "Google Chrome Extension",
-    year: "2024",
+    year: "2025",
     logo: <div className="text-primary font-bold text-2xl">WYD</div>,
     bullets: [
       [
@@ -114,8 +115,6 @@ export const PROJECTS: ProjectConfig[] = [
         <span className="text-[#8e51ff]">Q</span>
       </div>
     ),
-
-    // logo: <img src="/project-icons/formula-quiz-logo.webp" alt="Logo" />,
     bullets: [
       [
         "An in-development F1 quiz website for fans to test their knowledge on everything Formula 1",
@@ -225,46 +224,37 @@ export function Projects({ animationOffset }: { animationOffset?: number }) {
               ) : null}
 
               {project.liveUrl ? (
-                <div>
+                project.liveUrl === "https://lukehs.com" ? (
                   <Tooltip
                     open={isTooltipOpen}
                     onOpenChange={handleTooltipOpenChange}
                   >
                     <TooltipTrigger asChild>
-                      <Button
-                        variant={"outline"}
-                        size={"sm"}
-                        title="View project"
-                        className="group relative cursor-pointer text-primary border-primary dark:border-primary bg-transparent 
-                        hover:text-blue-600 hover:bg-blue-600/10 hover:border-blue-600 dark:hover:text-blue-300 
-                        dark:bg-transparent dark:hover:bg-blue-600/10 dark:hover:border-blue-600 transition-colors 
-                        duration-200 ease-in-out"
-                        onClick={() => {
-                          if (project.liveUrl === "https://lukehs.com") {
+                      <span>
+                        <ViewProjectButton
+                          onClick={() => {
                             setIsTooltipOpen(true);
                             window.setTimeout(
                               () => setIsTooltipOpen(false),
                               1400
                             );
-                          } else {
-                            const newWindow = window.open(
-                              project.liveUrl,
-                              "_blank"
-                            );
-                            if (newWindow) newWindow.opener = null;
-                          }
-                        }}
-                      >
-                        <ExternalLink />
-                        View project
-                      </Button>
+                          }}
+                        />
+                      </span>
                     </TooltipTrigger>
 
                     <TooltipContent side="bottom" align="center">
                       You are already here!
                     </TooltipContent>
                   </Tooltip>
-                </div>
+                ) : (
+                  <ViewProjectButton
+                    onClick={() => {
+                      const newWindow = window.open(project.liveUrl, "_blank");
+                      if (newWindow) newWindow.opener = null;
+                    }}
+                  />
+                )
               ) : null}
             </div>
           </div>
