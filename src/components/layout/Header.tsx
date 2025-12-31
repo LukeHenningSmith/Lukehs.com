@@ -68,10 +68,12 @@ function Header() {
     icon,
     url,
     onClick,
+    title,
   }: {
     icon: ReactNode;
     url?: string;
     onClick?: () => void;
+    title?: string;
   }) => {
     const handleClick = () => {
       const newWindow = window.open(url, "_blank");
@@ -84,6 +86,7 @@ function Header() {
         size="icon"
         className={subtleButtonStyle}
         onClick={onClick ?? handleClick}
+        title={title}
       >
         {icon}
       </Button>
@@ -126,6 +129,7 @@ function Header() {
             {renderIconButton({
               icon: <Linkedin />,
               url: "https://linkedin.com/in/luke-hs",
+              title: "LinkedIn",
             })}
 
             {renderIconButton({
@@ -136,11 +140,13 @@ function Header() {
                 const body = encodeURIComponent("Hi Luke,");
                 window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
               },
+              title: "Email",
             })}
 
             {renderIconButton({
               icon: <Github />,
               url: "https://github.com/LukeHenningSmith",
+              title: "GitHub",
             })}
 
             <ModeToggle />
