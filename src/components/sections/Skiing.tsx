@@ -54,29 +54,33 @@ const ARROW_BUTTON_STYLE =
 
 export function Skiing({ animationOffset }: { animationOffset?: number }) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [direction, setDirection] = useState<1 | -1>(1); // 1 for next, -1 for prev
   const isDesktop = useIsDesktop();
+
+  const handleOpen = (i: number) => setOpenIndex(i);
+  const handleClose = () => setOpenIndex(null);
+
+  const handleNextImage = () => {
+    if (openIndex !== null && openIndex < IMAGES.length - 1) {
+      setDirection(1);
+      handleOpen(openIndex + 1);
+    }
+  };
+
+  const handlePrevImage = () => {
+    if (openIndex !== null && openIndex > 0) {
+      setDirection(-1);
+      handleOpen(openIndex - 1);
+    }
+  };
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (openIndex === null) return;
-      if (e.key === "Escape") {
-        e.preventDefault();
-        handleClose();
-        return;
-      }
-      if (e.key === "ArrowLeft") {
-        if (openIndex > 0) {
-          e.preventDefault();
-          handleOpen(openIndex - 1);
-        }
-        return;
-      }
-      if (e.key === "ArrowRight") {
-        if (openIndex < IMAGES.length - 1) {
-          e.preventDefault();
-          handleOpen(openIndex + 1);
-        }
-      }
+      e.preventDefault();
+      if (e.key === "Escape") handleClose();
+      else if (e.key === "ArrowLeft") handlePrevImage();
+      else if (e.key === "ArrowRight") handleNextImage();
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
@@ -93,24 +97,11 @@ export function Skiing({ animationOffset }: { animationOffset?: number }) {
 
   const swipeHandlers = useSwipeable({
     onSwiped: (eventData) => {
-      if (eventData.dir === "Left") {
-        // next image
-        if (openIndex !== null && openIndex < IMAGES.length - 1) {
-          handleOpen(openIndex + 1);
-        }
-      } else if (eventData.dir === "Right") {
-        // previous image
-        if (openIndex !== null && openIndex > 0) {
-          handleOpen(openIndex - 1);
-        }
-      } else {
-        handleClose();
-      }
+      if (eventData.dir === "Left") handleNextImage();
+      else if (eventData.dir === "Right") handlePrevImage();
+      else handleClose();
     },
   });
-
-  const handleOpen = (i: number) => setOpenIndex(i);
-  const handleClose = () => setOpenIndex(null);
 
   return (
     <Section id="skiing" title="Skiing" animationOffset={animationOffset}>
@@ -194,7 +185,7 @@ export function Skiing({ animationOffset }: { animationOffset?: number }) {
             <Button
               onClick={(e) => {
                 e.stopPropagation();
-                openIndex > 0 && handleOpen(openIndex - 1);
+                handlePrevImage();
               }}
               variant={"ghost"}
               className={ARROW_BUTTON_STYLE}
@@ -217,15 +208,40 @@ export function Skiing({ animationOffset }: { animationOffset?: number }) {
               }}
               {...swipeHandlers}
             >
-              <motion.img
-                src={IMAGES[openIndex].src}
-                alt={IMAGES[openIndex].alt ?? IMAGES[openIndex].location}
-                className="w-full w-[80vw] max-h-[80vh] object-cover"
-                initial={{ scale: 1.02 }}
-                animate={{ scale: 1 }}
-                exit={{ scale: 1.02 }}
-                transition={{ duration: 0.35 }}
-              />
+              <AnimatePresence initial={false} custom={direction}>
+                <motion.img
+                  key={openIndex}
+                  src={IMAGES[openIndex].src}
+                  alt={IMAGES[openIndex].alt ?? IMAGES[openIndex].location}
+                  className="w-full w-[80vw] max-h-[80vh] object-cover"
+                  variants={{
+                    enter: (custom: number) => ({
+                      x: custom > 0 ? 300 : -300,
+                      opacity: 0,
+                      scale: 1.02,
+                    }),
+                    center: {
+                      x: 0,
+                      opacity: 1,
+                      scale: 1,
+                    },
+                    exit: (custom: number) => ({
+                      x: custom > 0 ? -300 : 300,
+                      opacity: 0,
+                      scale: 1.02,
+                    }),
+                  }}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  custom={direction}
+                  transition={{
+                    x: { type: "spring", stiffness: 400, damping: 40 },
+                    opacity: { duration: 0.2 },
+                    scale: { duration: 0.35 },
+                  }}
+                />
+              </AnimatePresence>
 
               <Button
                 variant={"ghost"}
@@ -272,7 +288,7 @@ export function Skiing({ animationOffset }: { animationOffset?: number }) {
             <Button
               onClick={(e) => {
                 e.stopPropagation();
-                openIndex < IMAGES.length - 1 && handleOpen(openIndex + 1);
+                handleNextImage();
               }}
               variant={"ghost"}
               className={ARROW_BUTTON_STYLE}
