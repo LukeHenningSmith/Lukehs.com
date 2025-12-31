@@ -35,7 +35,7 @@ export default function LinkableHeading({ id, children }: Props) {
 
     // show checkmark and copied text briefly
     setCopied(true);
-    window.setTimeout(() => setCopied(false), 1800);
+    window.setTimeout(() => setCopied(false), 1500);
   };
 
   return (

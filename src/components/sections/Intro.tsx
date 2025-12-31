@@ -2,6 +2,7 @@ import type { SkillItem } from "@/types";
 import { scrollToId } from "../layout/Header";
 import {
   AWS_SKILL,
+  DOCKER_SKILL,
   PYTHON_SKILL,
   REACT_SKILL,
   SKILLS,
@@ -19,6 +20,7 @@ export function Intro({ animationOffset }: { animationOffset?: number }) {
     SKILLS[REACT_SKILL],
     SKILLS[PYTHON_SKILL],
     SKILLS[AWS_SKILL],
+    SKILLS[DOCKER_SKILL],
   ];
 
   return (
@@ -40,19 +42,21 @@ export function Intro({ animationOffset }: { animationOffset?: number }) {
           </span>
 
           <span>
-            I have spent the past 2 years building business critical full-stack
-            web applications in the finance industry, along with a few exciting{" "}
+            I have 2 years of experience building full-stack web applications in
+            the finance industry as well as many exciting{" "}
             <Button
               variant={"link"}
               onClick={() => scrollToId("projects")}
               title="Scroll to Projects section"
               size={null}
+              className="text-md"
             >
               personal projects
             </Button>
-            . The technologies I am most experienced with are:
+            .
           </span>
 
+          <span>The technologies I am most experienced with are:</span>
           <SkillsContainer skills={skills} />
 
           <span>
@@ -63,6 +67,7 @@ export function Intro({ animationOffset }: { animationOffset?: number }) {
                 onClick={() => scrollToId("skiing")}
                 title="Scroll to Skiing section"
                 size={null}
+                className="text-md"
               >
                 bucket list
               </Button>{" "}

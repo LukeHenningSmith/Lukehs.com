@@ -158,8 +158,9 @@ function renderBullet(parts: BulletPart[], idx: number) {
               const newWindow = window.open(p.url, "_blank");
               if (newWindow) newWindow.opener = null;
             }}
+            className="text-md"
           >
-            <div className="flex gap-1">
+            <div className="flex gap-1 items-center">
               {p.label}
               {p.isExternalLink && <ExternalLink />}
             </div>
