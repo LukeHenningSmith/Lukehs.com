@@ -278,7 +278,7 @@ export function Skiing({ animationOffset }: { animationOffset?: number }) {
 
       <FadeUp delay={(animationOffset ?? 0) + ANIMATION_GAP}>
         <div className="mt-6">
-          <h3 className="text-primary mb-2">Skiing bucket list</h3>
+          <h3 className="text-primary mb-2 font-bold">My skiing bucket list</h3>
           <ul className="list-disc pl-5 text-muted-foreground space-y-1">
             <li>Dolomites, Italy</li>
             <li>Val Thorens, France</li>
