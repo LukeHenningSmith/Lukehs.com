@@ -82,7 +82,7 @@ export const PROJECTS: ProjectConfig[] = [
     subtitle: "Website",
     year: "2025",
     logo: (
-      <div className="opacity-70 hover:opacity-80">
+      <div className="opacity-70">
         <img src="/logo-light.svg" alt="Logo" className="block dark:hidden" />
         <img src="/logo-dark.svg" alt="Logo" className="hidden dark:block" />
       </div>
