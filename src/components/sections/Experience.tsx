@@ -52,8 +52,7 @@ export function Experience({ animationOffset }: { animationOffset?: number }) {
       duration: `Jul 2025 - Present · ${calculateDurationFrom("2025-06-30")}`,
       bullets: [
         "Frontend lead for the new IB&M credit origination web platform",
-        "Undertook AWS training and certification to support the bank-wide migration to AWS",
-        "Responsible for mentoring and supporting new members of the team with onboarding, best practices and code reviews",
+        "Responsible for mentoring and supporting interns and new members of the team with onboarding, best practices and code reviews",
       ],
       skills: [
         SKILLS[REACT_SKILL],
@@ -71,9 +70,9 @@ export function Experience({ animationOffset }: { animationOffset?: number }) {
       employmentType: "Full-time",
       duration: "Aug 2024 - June 2025 · 11 mos",
       bullets: [
-        "Continued frontend web development for the IB&M tool I delivered during my internship under the guidance of senior engineers and in collaboration with PO, UX, business analysts and users",
-        "Created a comprehensive suite of unit and integration tests (in Vitest & Playwright) that ensured zero frontend-caused downtime post-launch",
-        "Balanced the full-time graduate-level role during my final five months of university",
+        "Balanced the full-time graduate-level role during my final 6 months of university",
+        "Continued development of the tool I delivered during my internship under the guidance of senior engineers and in collaboration with PO, UX, business analysts and users",
+        "Created a comprehensive suite of unit and integration tests using Vitest and Playwright that ensured zero frontend-caused downtime post-launch",
       ],
       skills: [
         SKILLS[REACT_SKILL],
