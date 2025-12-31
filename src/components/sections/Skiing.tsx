@@ -3,8 +3,10 @@ import { FadeUp } from "../layout/FadeUp";
 import { Section } from "../utility/Section";
 import { ANIMATION_GAP } from "@/constants";
 import { Button } from "../ui/button";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, MapPin } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Kbd, KbdGroup } from "../ui/kbd";
+import { useIsDesktop } from "@/hooks/hooks";
 
 type SkiImage = {
   src: string;
@@ -51,6 +53,7 @@ const ARROW_BUTTON_STYLE =
 
 export function Skiing({ animationOffset }: { animationOffset?: number }) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const isDesktop = useIsDesktop();
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -105,7 +108,7 @@ export function Skiing({ animationOffset }: { animationOffset?: number }) {
             key={img.src}
           >
             <div
-              className="group relative h-40 sm:h-56 w-full overflow-hidden rounded-lg 
+              className="group relative h-40 sm:h-56 w-full overflow-hidden rounded-sm 
                 cursor-pointer hover:scale-101 transition-transform duration-300"
               onClick={() => handleOpen(i)}
               role="button"
@@ -133,7 +136,8 @@ export function Skiing({ animationOffset }: { animationOffset?: number }) {
                   group-hover:translate-y-0 group-focus:translate-y-0 transition-opacity 
                   transition-transform duration-200 ease-in-out"
               >
-                <div className="text-sm font-semibold drop-shadow">
+                <div className="text-sm font-semibold drop-shadow flex items-center gap-1">
+                  <MapPin size={14} />
                   {img.location}
                 </div>
 
@@ -183,7 +187,7 @@ export function Skiing({ animationOffset }: { animationOffset?: number }) {
 
             {/* Modal content */}
             <motion.div
-              className="relative max-w-[90%] max-h-[85%] w-[min(1100px,90%)] rounded-lg overflow-hidden bg-black z-10"
+              className="relative rounded-sm overflow-hidden bg-black z-10"
               onClick={(e) => e.stopPropagation()}
               initial={{ scale: 0.96, y: 8, opacity: 0 }}
               animate={{ scale: 1, y: 0, opacity: 1 }}
@@ -232,7 +236,7 @@ export function Skiing({ animationOffset }: { animationOffset?: number }) {
               <motion.img
                 src={IMAGES[openIndex].src}
                 alt={IMAGES[openIndex].alt ?? IMAGES[openIndex].location}
-                className="w-full h-[70vh] object-cover"
+                className="w-full w-[80vw] max-h-[80vh] object-cover"
                 initial={{ scale: 1.02 }}
                 animate={{ scale: 1 }}
                 exit={{ scale: 1.02 }}
@@ -251,11 +255,32 @@ export function Skiing({ animationOffset }: { animationOffset?: number }) {
               </Button>
 
               <div className="p-4 bg-[#2D2D2D] opacity-70 text-white flex flex-col gap-0.5">
-                <div className="text-lg font-semibold">
+                <div className="text-lg font-semibold flex items-center gap-1">
+                  <MapPin size={18} />
                   {IMAGES[openIndex].location}
                 </div>
-                <div className="text-sm opacity-80 text-[#cccccc]">
-                  {IMAGES[openIndex].time}
+
+                <div className="flex justify-between text-sm opacity-80 text-[#cccccc]">
+                  <div>{IMAGES[openIndex].time}</div>
+
+                  {isDesktop && (
+                    <div className="flex flex-col items-center gap-4">
+                      <p className="text-sm">
+                        Use{" "}
+                        <KbdGroup>
+                          <Kbd
+                            children="<"
+                            className="text-black dark:text-white"
+                          />
+                          <Kbd
+                            children=">"
+                            className="text-black dark:text-white"
+                          />
+                        </KbdGroup>{" "}
+                        keys to switch image
+                      </p>
+                    </div>
+                  )}
                 </div>
               </div>
             </motion.div>
@@ -277,8 +302,8 @@ export function Skiing({ animationOffset }: { animationOffset?: number }) {
       </AnimatePresence>
 
       <FadeUp delay={(animationOffset ?? 0) + ANIMATION_GAP}>
-        <div className="mt-6">
-          <h3 className="text-primary mb-2 font-bold">My skiing bucket list</h3>
+        <div className="mt-4">
+          <h3 className="text-primary mb-2">My skiing bucket list:</h3>
           <ul className="list-disc pl-5 text-muted-foreground space-y-1">
             <li>Dolomites, Italy</li>
             <li>Val Thorens, France</li>
