@@ -47,7 +47,7 @@ const IMAGES: SkiImage[] = [
 ];
 
 const ARROW_BUTTON_STYLE =
-  "z-20 mx-2 cursor-pointer text-secondary hover:text-muted-foreground bg-transparent hover:bg-transparent dark:hover:bg-transparent dark:bg-transparent dark:text-primary dark:hover:text-muted-foreground";
+  "z-20 mx-2 text-secondary hover:text-muted-foreground bg-transparent hover:bg-transparent dark:hover:bg-transparent dark:bg-transparent dark:text-primary dark:hover:text-muted-foreground";
 
 export function Skiing({ animationOffset }: { animationOffset?: number }) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -242,7 +242,7 @@ export function Skiing({ animationOffset }: { animationOffset?: number }) {
               <Button
                 variant={"ghost"}
                 size={"icon"}
-                className="absolute right-3 top-3 cursor-pointer text-secondary hover:text-muted-foreground bg-transparent 
+                className="absolute right-3 top-3 text-secondary hover:text-muted-foreground bg-transparent 
               hover:bg-transparent dark:hover:bg-transparent dark:bg-transparent dark:text-primary dark:hover:text-muted-foreground"
                 onClick={handleClose}
                 aria-label="Close enlarged image"

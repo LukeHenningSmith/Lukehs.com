@@ -23,7 +23,7 @@ export function scrollToId(id: string) {
 }
 
 export const subtleButtonStyle =
-  "cursor-pointer text-muted-foreground hover:text-primary bg-transparent hover:bg-transparent dark:hover:bg-transparent dark:bg-transparent";
+  "text-muted-foreground hover:text-primary bg-transparent hover:bg-transparent dark:hover:bg-transparent dark:bg-transparent";
 
 function Header() {
   useEffect(() => {

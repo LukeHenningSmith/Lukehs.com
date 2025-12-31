@@ -14,13 +14,15 @@ import {
   FRAMER_MOTION_SKILL,
 } from "../utility/skills/constants";
 import { Button } from "../ui/button";
-import { Github } from "lucide-react";
+import { ExternalLink, Github } from "lucide-react";
 import { useState, type ReactNode } from "react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 import { ANIMATION_GAP } from "@/constants";
 import { ViewProjectButton } from "../ViewProjectButton";
 
-type BulletPart = string | { label: string; url: string };
+type BulletPart =
+  | string
+  | { label: string; url: string; isExternalLink?: boolean };
 
 export type ProjectConfig = {
   key: string;
@@ -47,24 +49,37 @@ export const PROJECTS: ProjectConfig[] = [
       ],
       [
         "Exciting and insightful visualisations supported by ",
-        { label: "shadcn", url: "https://ui.shadcn.com/" },
+        {
+          label: "shadcn",
+          url: "https://ui.shadcn.com/",
+          isExternalLink: true,
+        },
         " and ",
-        { label: "TailwindCSS", url: "https://tailwindcss.com/" },
+        {
+          label: "TailwindCSS",
+          url: "https://tailwindcss.com/",
+          isExternalLink: true,
+        },
       ],
       [
         "Network response caching for seamless UX and refresh using ",
-        { label: "Tanstack-Query", url: "https://tanstack.com/query" },
+        {
+          label: "Tanstack-Query",
+          url: "https://tanstack.com/query",
+          isExternalLink: true,
+        },
       ],
       [
         "Renders 10,000+ row tables nearly instantly using virtualisation with ",
         {
           label: "react-window",
           url: "https://github.com/bvaughn/react-window",
+          isExternalLink: true,
         },
       ],
       [
         "Comprehensive test suite built using ",
-        { label: "Vitest", url: "https://vitest.dev/" },
+        { label: "Vitest", url: "https://vitest.dev/", isExternalLink: true },
       ],
     ],
     skills: [
@@ -139,13 +154,15 @@ function renderBullet(parts: BulletPart[], idx: number) {
             key={i}
             variant={"link"}
             size={null}
-            className="cursor-pointer"
             onClick={() => {
               const newWindow = window.open(p.url, "_blank");
               if (newWindow) newWindow.opener = null;
             }}
           >
-            {p.label}
+            <div className="flex gap-1">
+              {p.label}
+              {p.isExternalLink && <ExternalLink />}
+            </div>
           </Button>
         );
       })}
@@ -205,7 +222,7 @@ export function Projects({ animationOffset }: { animationOffset?: number }) {
                     variant={"outline"}
                     size={"sm"}
                     title="View source code on GitHub"
-                    className="cursor-pointer text-primary border-primary dark:border-primary bg-transparent 
+                    className="text-primary border-primary dark:border-primary bg-transparent 
                 hover:text-[#F05033] hover:bg-[#F05033]/10
                 hover:border-[#F05033] dark:hover:text-[#F05033] dark:bg-transparent 
                 dark:hover:bg-[#F05033]/10 dark:hover:border-[#F05033] transition-colors duration-200 ease-in-out"

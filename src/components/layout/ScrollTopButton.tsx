@@ -35,7 +35,6 @@ export default function ScrollTop() {
             size={"icon"}
             title="Scroll to top"
             onClick={handleClick}
-            className="cursor-pointer"
             aria-label="Scroll to top"
           >
             <ArrowUp />

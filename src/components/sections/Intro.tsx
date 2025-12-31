@@ -11,6 +11,7 @@ import { SkillsContainer } from "../utility/skills/SkillsContainer";
 import { Section } from "../utility/Section";
 import { FadeUp } from "../layout/FadeUp";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
+import { Button } from "../ui/button";
 
 export function Intro({ animationOffset }: { animationOffset?: number }) {
   const skills: SkillItem[] = [
@@ -41,13 +42,14 @@ export function Intro({ animationOffset }: { animationOffset?: number }) {
           <span>
             I have spent the past 2 years building business critical full-stack
             web applications in the finance industry, along with a few exciting{" "}
-            <u
-              className="hover:text-primary cursor-pointer"
+            <Button
+              variant={"link"}
               onClick={() => scrollToId("projects")}
               title="Scroll to Projects section"
+              size={null}
             >
               personal projects
-            </u>
+            </Button>
             . The technologies I am most experienced with are:
           </span>
 
@@ -56,13 +58,14 @@ export function Intro({ animationOffset }: { animationOffset?: number }) {
           <span>
             <i>
               I am also an avid skiier (and recent snowboarder) with a{" "}
-              <u
-                className="hover:text-primary cursor-pointer"
+              <Button
+                variant={"link"}
                 onClick={() => scrollToId("skiing")}
                 title="Scroll to Skiing section"
+                size={null}
               >
                 bucket list
-              </u>{" "}
+              </Button>{" "}
               to ski all over the world ⛷️.
             </i>
           </span>
