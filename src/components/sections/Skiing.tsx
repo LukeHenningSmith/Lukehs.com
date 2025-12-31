@@ -197,7 +197,7 @@ export function Skiing({ animationOffset }: { animationOffset?: number }) {
 
             {/* Modal content */}
             <motion.div
-              className="relative rounded-sm overflow-hidden bg-black z-10"
+              className="relative rounded-sm overflow-hidden bg-[#2D2D2D] z-10"
               onClick={(e) => e.stopPropagation()}
               initial={{ scale: 0.96, y: 8, opacity: 0 }}
               animate={{ scale: 1, y: 0, opacity: 1 }}
@@ -213,23 +213,16 @@ export function Skiing({ animationOffset }: { animationOffset?: number }) {
                   key={openIndex}
                   src={IMAGES[openIndex].src}
                   alt={IMAGES[openIndex].alt ?? IMAGES[openIndex].location}
-                  className="w-full w-[80vw] max-h-[80vh] object-cover"
+                  className="w-full w-[80vw] max-h-[70vh]"
                   variants={{
                     enter: (custom: number) => ({
                       x: custom > 0 ? 300 : -300,
                       opacity: 0,
-                      scale: 1.02,
                     }),
                     center: {
                       x: 0,
                       opacity: 1,
-                      scale: 1,
                     },
-                    exit: (custom: number) => ({
-                      x: custom > 0 ? -300 : 300,
-                      opacity: 0,
-                      scale: 1.02,
-                    }),
                   }}
                   initial="enter"
                   animate="center"
@@ -237,8 +230,7 @@ export function Skiing({ animationOffset }: { animationOffset?: number }) {
                   custom={direction}
                   transition={{
                     x: { type: "spring", stiffness: 400, damping: 40 },
-                    opacity: { duration: 0.2 },
-                    scale: { duration: 0.35 },
+                    opacity: { duration: 0.1 },
                   }}
                 />
               </AnimatePresence>
