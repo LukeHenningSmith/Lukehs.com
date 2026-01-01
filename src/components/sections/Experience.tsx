@@ -41,7 +41,13 @@ export function Experience({ animationOffset }: { animationOffset?: number }) {
     const yearText = years === 1 ? "1 yr" : `${years} yrs`;
     const monthText = months === 1 ? "1 mo" : `${months} mos`;
 
-    return years > 0 ? `${yearText} ${monthText}` : monthText;
+    if (years < 0 && months < 0) return "Recently started";
+
+    return years > 0 && months > 0
+      ? `${yearText} ${monthText}`
+      : years > 0
+        ? yearText
+        : monthText;
   }
 
   const roles: RoleConfig[] = [
