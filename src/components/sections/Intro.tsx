@@ -3,6 +3,7 @@ import { scrollToId } from "../layout/Header";
 import {
   AWS_SKILL,
   DOCKER_SKILL,
+  GITHUB_ACTIONS_SKILL,
   PYTHON_SKILL,
   REACT_SKILL,
   SKILLS,
@@ -21,6 +22,7 @@ export function Intro({ animationOffset }: { animationOffset?: number }) {
     SKILLS[PYTHON_SKILL],
     SKILLS[AWS_SKILL],
     SKILLS[DOCKER_SKILL],
+    SKILLS[GITHUB_ACTIONS_SKILL],
   ];
 
   return (
@@ -28,8 +30,7 @@ export function Intro({ animationOffset }: { animationOffset?: number }) {
       <FadeUp delay={animationOffset}>
         <div className="flex flex-col gap-4 text-base text-muted-foreground">
           <span>
-            Hey I'm Luke, a software engineer and skiing fanatic from Sydney,
-            Australia{" "}
+            Hey I'm Luke, a software engineer and skier from Sydney, Australia{" "}
             <Tooltip>
               <TooltipTrigger asChild>
                 <span>🇦🇺</span>
@@ -42,8 +43,8 @@ export function Intro({ animationOffset }: { animationOffset?: number }) {
           </span>
 
           <span>
-            I have 2 years of experience building full-stack web applications in
-            the finance industry as well as many exciting{" "}
+            I have over 2 years of experience building web applications in the
+            finance industry, as well as many exciting{" "}
             <Button
               variant={"link"}
               onClick={() => scrollToId("projects")}
@@ -71,7 +72,7 @@ export function Intro({ animationOffset }: { animationOffset?: number }) {
               >
                 bucket list
               </Button>{" "}
-              to ski all over the world ⛷️.
+              to ski all over the world.
             </i>
           </span>
         </div>
