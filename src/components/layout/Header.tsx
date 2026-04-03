@@ -40,7 +40,7 @@ function Header() {
     if (hash) {
       // Two RAFs to ensure DOM layout is painted and React/SSR content is present.
       requestAnimationFrame(() =>
-        requestAnimationFrame(() => scrollToId(hash))
+        requestAnimationFrame(() => scrollToId(hash)),
       );
     }
 
@@ -123,6 +123,10 @@ function Header() {
               {renderTextButton({ id: "projects", label: "Projects" })}
               {renderTextButton({ id: "experience", label: "Experience" })}
               {renderTextButton({ id: "education", label: "Education" })}
+              {renderTextButton({
+                id: "certifications",
+                label: "Certifications",
+              })}
               {renderTextButton({ id: "skiing", label: "Skiing" })}
             </div>
 

@@ -44,7 +44,7 @@ export function Education({ animationOffset }: { animationOffset?: number }) {
             <div>
               <div className="flex flex-col gap-2 text-muted-foreground">
                 <ul className="list-disc pl-5 flex flex-col gap-1">
-                  <li>1st in Software Engineering graduating class</li>
+                  <li>1st in Software Engineering</li>
                   <li>
                     Dean's List of Excellence in Academic Performance (2019, 22,
                     23)
@@ -76,7 +76,7 @@ export function Education({ animationOffset }: { animationOffset?: number }) {
                 onClick={() => {
                   const newWindow = window.open(
                     "https://www.myequals.net/sharelink/f8269a17-4f0c-4a01-b1c1-30bfbab6ea71/10d20b81-93a9-4dfe-b905-bbf59cd6de24",
-                    "_blank"
+                    "_blank",
                   );
                   if (newWindow) newWindow.opener = null;
                 }}
