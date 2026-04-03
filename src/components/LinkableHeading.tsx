@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Clipboard, Check } from "lucide-react";
+import { ClipboardCopy, Check } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface Props {
@@ -45,9 +45,12 @@ export default function LinkableHeading({ id, children }: Props) {
         onClick={handleClick}
         aria-label={`Link to ${id}`}
         title="Click to copy link"
-        className="group relative flex items-center gap-3"
+        className="group relative flex items-center gap-3 cursor-pointer"
       >
-        <h2 id={id} className="pointer-events-none text-xl">
+        <h2
+          id={id}
+          className="pointer-events-none text-xl underline-offset-4 group-hover:underline decoration-primary/0 group-hover:decoration-primary/100 transition-all duration-300"
+        >
           {children}
         </h2>
 
@@ -80,7 +83,7 @@ export default function LinkableHeading({ id, children }: Props) {
                 transition={{ duration: 0.1 }}
                 aria-hidden
               >
-                <Clipboard className="w-4 h-4" />
+                <ClipboardCopy className="w-4 h-4" />
               </motion.span>
             )}
           </AnimatePresence>
