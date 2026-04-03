@@ -38,6 +38,29 @@ export type ProjectConfig = {
 
 export const PROJECTS: ProjectConfig[] = [
   {
+    key: "formula-quiz",
+    title: "Formula Quiz",
+    subtitle: "Website - In Development",
+    year: "2026*",
+    logo: (
+      <div className="text-4xl font-bold flex">
+        <span className="text-black dark:text-white">F</span>
+        <span className="text-[#8e51ff]">Q</span>
+      </div>
+    ),
+    bullets: [
+      [
+        "An in-development F1 quiz website for fans to test their knowledge on everything Formula 1",
+      ],
+      [
+        "Built using web-sockets for real-time quizzes, leaderboards and competitions",
+      ],
+      ["*Planned release Feb 2026"],
+    ],
+    skills: [PYTHON_SKILL, TS_SKILL, REACT_SKILL, AWS_SKILL],
+    liveUrl: "https://formula-quiz.com",
+  },
+  {
     key: "wyd",
     title: "What you doing?",
     subtitle: "Google Chrome Extension",
@@ -119,29 +142,6 @@ export const PROJECTS: ProjectConfig[] = [
     sourceUrl: "https://github.com/LukeHenningSmith/Lukehs.com",
     liveUrl: "https://lukehs.com",
   },
-  {
-    key: "formula-quiz",
-    title: "Formula Quiz",
-    subtitle: "Website - In Development",
-    year: "2026*",
-    logo: (
-      <div className="text-4xl font-bold flex">
-        <span className="text-black dark:text-white">F</span>
-        <span className="text-[#8e51ff]">Q</span>
-      </div>
-    ),
-    bullets: [
-      [
-        "An in-development F1 quiz website for fans to test their knowledge on everything Formula 1",
-      ],
-      [
-        "Built using web-sockets for real-time quizzes, leaderboards and competitions",
-      ],
-      ["*Planned release Feb 2026"],
-    ],
-    skills: [PYTHON_SKILL, TS_SKILL, REACT_SKILL, AWS_SKILL],
-    liveUrl: "https://formula-quiz.com",
-  },
 ];
 
 function renderBullet(parts: BulletPart[], idx: number) {
@@ -180,7 +180,7 @@ export function Projects({ animationOffset }: { animationOffset?: number }) {
 
   const renderProject = (project: ProjectConfig, index: number) => {
     const skills: SkillItem[] = (project.skills || []).map(
-      (s: any) => SKILLS[s as keyof typeof SKILLS]
+      (s: any) => SKILLS[s as keyof typeof SKILLS],
     );
 
     return (
@@ -230,7 +230,7 @@ export function Projects({ animationOffset }: { animationOffset?: number }) {
                     onClick={() => {
                       const newWindow = window.open(
                         project.sourceUrl,
-                        "_blank"
+                        "_blank",
                       );
                       if (newWindow) newWindow.opener = null;
                     }}
@@ -254,7 +254,7 @@ export function Projects({ animationOffset }: { animationOffset?: number }) {
                             setIsTooltipOpen(true);
                             window.setTimeout(
                               () => setIsTooltipOpen(false),
-                              1400
+                              1400,
                             );
                           }}
                         />
