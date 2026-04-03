@@ -8,6 +8,7 @@ import { Title } from "./components/sections/Title";
 import { Intro } from "./components/sections/Intro";
 import { Experience } from "./components/sections/Experience";
 import { Education } from "./components/sections/Education";
+import { Certifications } from "./components/sections/Certifications";
 import { Projects } from "./components/sections/Projects";
 import { Skiing } from "./components/sections/Skiing";
 import { FadeUp } from "./components/layout/FadeUp";
@@ -23,6 +24,7 @@ function App() {
     { key: "projects", node: Projects },
     { key: "experience", node: Experience },
     { key: "education", node: Education },
+    { key: "certifications", node: Certifications },
     { key: "skiing", node: Skiing },
   ];
 
