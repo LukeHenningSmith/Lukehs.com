@@ -40,8 +40,8 @@ export const PROJECTS: ProjectConfig[] = [
   {
     key: "formula-quiz",
     title: "Formula Quiz",
-    subtitle: "Website - In Development",
-    year: "2026*",
+    subtitle: "Website",
+    year: "2026",
     logo: (
       <div className="text-4xl font-bold flex">
         <span className="text-black dark:text-white">F</span>
@@ -50,12 +50,38 @@ export const PROJECTS: ProjectConfig[] = [
     ),
     bullets: [
       [
-        "An in-development F1 quiz website for fans to test their knowledge on everything Formula 1",
+        "Real-time Formula 1 multiplayer quiz application featuring live score tracking in lobbies of up to 20 players via ",
+        {
+          label: "WebSocket",
+          url: "https://developer.mozilla.org/en-US/docs/Web/API/WebSocket",
+          isExternalLink: true,
+        },
+        " connections",
       ],
       [
-        "Built using web-sockets for real-time quizzes, leaderboards and competitions",
+        "RESTful API using ",
+        {
+          label: "FastAPI",
+          url: "https://fastapi.tiangolo.com/",
+          isExternalLink: true,
+        },
+        " with asynchronous database operations through ",
+        {
+          label: "SQLAlchemy",
+          url: "https://www.sqlalchemy.org/",
+          isExternalLink: true,
+        },
+        " ORM",
       ],
-      ["*Planned release Feb 2026"],
+      [
+        "Architected ",
+        {
+          label: "AWS",
+          url: "https://aws.amazon.com/",
+          isExternalLink: true,
+        },
+        " infrastructure with S3 for static frontend hosting, EC2 for backend deployment, CloudFront CDN, and Route53 for DNS management",
+      ],
     ],
     skills: [PYTHON_SKILL, TS_SKILL, REACT_SKILL, AWS_SKILL],
     liveUrl: "https://formula-quiz.com",
