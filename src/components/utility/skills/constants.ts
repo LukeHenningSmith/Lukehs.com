@@ -11,6 +11,7 @@ export const VITE_SKILL = "viteSkill";
 export const PLAYWRIGHT_SKILL = "playwrightSkill";
 export const GITHUB_ACTIONS_SKILL = "githubActionsSkill";
 export const FRAMER_MOTION_SKILL = "framerMotionSkill";
+export const NEXTJS_SKILL = "nextjsSkill";
 
 export const SKILLS: Record<string, SkillItem> = {
   [TS_SKILL]: {
@@ -80,5 +81,12 @@ export const SKILLS: Record<string, SkillItem> = {
     label: "Framer Motion",
     imgSrc: "/tech-icons/framer-motion-logo.svg",
     url: "https://www.framer.com/motion/",
+  },
+  [NEXTJS_SKILL]: {
+    id: "nextjs",
+    label: "NextJS",
+    imgSrc: "/tech-icons/nextjs-icon-light-background.svg",
+    imgSrcDark: "/tech-icons/nextjs-icon-dark-background.svg",
+    url: "https://nextjs.org/",
   },
 };
