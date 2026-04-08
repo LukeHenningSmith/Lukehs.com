@@ -2,8 +2,7 @@ import type { SkillItem } from "@/types";
 import { scrollToId } from "../layout/Header";
 import {
   AWS_SKILL,
-  DOCKER_SKILL,
-  GITHUB_ACTIONS_SKILL,
+  NEXTJS_SKILL,
   PYTHON_SKILL,
   REACT_SKILL,
   SKILLS,
@@ -18,11 +17,10 @@ import { Button } from "../ui/button";
 export function Intro({ animationOffset }: { animationOffset?: number }) {
   const skills: SkillItem[] = [
     SKILLS[TS_SKILL],
-    SKILLS[REACT_SKILL],
     SKILLS[PYTHON_SKILL],
     SKILLS[AWS_SKILL],
-    SKILLS[DOCKER_SKILL],
-    SKILLS[GITHUB_ACTIONS_SKILL],
+    SKILLS[NEXTJS_SKILL],
+    SKILLS[REACT_SKILL],
   ];
 
   return (

@@ -3,6 +3,7 @@ import {
   AWS_SKILL,
   DOCKER_SKILL,
   GITHUB_ACTIONS_SKILL,
+  NEXTJS_SKILL,
   PLAYWRIGHT_SKILL,
   PYTHON_SKILL,
   REACT_SKILL,
@@ -61,13 +62,14 @@ export function Experience({ animationOffset }: { animationOffset?: number }) {
         "Responsible for mentoring and supporting interns and new members of the team with onboarding, best practices and code reviews",
       ],
       skills: [
+        SKILLS[NEXTJS_SKILL],
+        SKILLS[AWS_SKILL],
         SKILLS[REACT_SKILL],
         SKILLS[TS_SKILL],
         SKILLS[VITEST_SKILL],
         SKILLS[PLAYWRIGHT_SKILL],
         SKILLS[DOCKER_SKILL],
         SKILLS[GITHUB_ACTIONS_SKILL],
-        SKILLS[AWS_SKILL],
       ],
     },
     {
@@ -87,6 +89,7 @@ export function Experience({ animationOffset }: { animationOffset?: number }) {
         SKILLS[PLAYWRIGHT_SKILL],
         SKILLS[DOCKER_SKILL],
         SKILLS[GITHUB_ACTIONS_SKILL],
+        SKILLS[PYTHON_SKILL],
       ],
     },
     {
