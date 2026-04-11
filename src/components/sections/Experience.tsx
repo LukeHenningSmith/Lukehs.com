@@ -58,8 +58,9 @@ export function Experience({ animationOffset }: { animationOffset?: number }) {
       employmentType: "Full-time",
       duration: `Jul 2025 - Present · ${calculateDurationFrom("2025-06-30")}`,
       bullets: [
-        "Frontend lead for the new IB&M credit origination web platform",
-        "Responsible for mentoring and supporting interns and new members of the team with onboarding, best practices and code reviews",
+        "Frontend lead for the IB&M Digial Origination & AI squad",
+        "Led frontend team's modernisation to new server-side and cloud technologies using NextJS on AWS",
+        "Responsible for mentoring and supporting new members of the team with onboarding, best practices and code reviews",
       ],
       skills: [
         SKILLS[NEXTJS_SKILL],
@@ -70,6 +71,7 @@ export function Experience({ animationOffset }: { animationOffset?: number }) {
         SKILLS[PLAYWRIGHT_SKILL],
         SKILLS[DOCKER_SKILL],
         SKILLS[GITHUB_ACTIONS_SKILL],
+        SKILLS[PYTHON_SKILL],
       ],
     },
     {
@@ -78,9 +80,8 @@ export function Experience({ animationOffset }: { animationOffset?: number }) {
       employmentType: "Full-time",
       duration: "Aug 2024 - June 2025 · 11 mos",
       bullets: [
-        "Balanced the full-time graduate-level role during my final 6 months of university",
-        "Continued development of the tool I delivered during my internship under the guidance of senior engineers and in collaboration with PO, UX, business analysts and users",
-        "Created a comprehensive suite of unit and integration tests using Vitest and Playwright that ensured zero frontend-caused downtime post-launch",
+        "Frontend lead for the new IB&M credit origination web platform",
+        "Maintained and extended the internal tool I built during my internship with zero incidents due to the comprehensive suite of automated unit (Vitest) and integration (Playwright) tests",
       ],
       skills: [
         SKILLS[REACT_SKILL],
@@ -98,9 +99,8 @@ export function Experience({ animationOffset }: { animationOffset?: number }) {
       employmentType: "Internship",
       duration: "Feb 2024 - Jul 2024 · 6 mos",
       bullets: [
-        "Built the frontend for a tool that is now used daily by risk analysts across IB&M",
-        "Utilised Python Matplotlib, Pandas and prioritary backend packages for thesis data analysis and visualisation",
-        "Completed my university thesis for CBA investigating component library use in Fin-tech applications",
+        "Built the frontend for a new internal company tool that is now used daily by risk analysts across IB&M",
+        "Completed university thesis for CommBank investigating component library use in Fin-tech applications",
       ],
       skills: [SKILLS[REACT_SKILL], SKILLS[TS_SKILL], SKILLS[PYTHON_SKILL]],
       firstRole: true,
