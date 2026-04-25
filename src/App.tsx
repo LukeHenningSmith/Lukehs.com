@@ -14,6 +14,7 @@ import { Skiing } from "./components/sections/Skiing";
 import { FadeUp } from "./components/layout/FadeUp";
 import { ANIMATION_GAP } from "./constants";
 import type { FC } from "react";
+import LocomotiveScrollWrapper from "./components/layout/LocomotiveScrollWrapper";
 
 function App() {
   const sections: {
@@ -30,28 +31,30 @@ function App() {
 
   return (
     <ThemeProvider defaultTheme="dark">
-      <SkiTracks />
-      <ScrollTop />
+      <LocomotiveScrollWrapper>
+        <SkiTracks />
+        <ScrollTop />
 
-      <FadeUp delay={ANIMATION_GAP}>
-        <Header />
-      </FadeUp>
+        <FadeUp delay={ANIMATION_GAP}>
+          <Header />
+        </FadeUp>
 
-      <main className="flex-1 flex justify-center py-16 overflow-y-auto px-10">
-        <div className="w-full max-w-4xl space-y-12">
-          <FadeUp delay={ANIMATION_GAP}>
-            <Title />
-          </FadeUp>
+        <main className="flex-1 flex justify-center py-16 overflow-y-auto px-10">
+          <div className="w-full max-w-4xl space-y-12">
+            <FadeUp delay={ANIMATION_GAP}>
+              <Title />
+            </FadeUp>
 
-          <div className="space-y-16">
-            {sections.map((s, i) => (
-              <s.node key={s.key} animationOffset={ANIMATION_GAP * (i + 2)} />
-            ))}
+            <div className="space-y-16">
+              {sections.map((s, i) => (
+                <s.node key={s.key} animationOffset={ANIMATION_GAP * (i + 2)} />
+              ))}
+            </div>
           </div>
-        </div>
-      </main>
+        </main>
 
-      <Footer animationOffset={ANIMATION_GAP * (sections.length + 1)} />
+        <Footer animationOffset={ANIMATION_GAP * (sections.length + 1)} />
+      </LocomotiveScrollWrapper>
     </ThemeProvider>
   );
 }
