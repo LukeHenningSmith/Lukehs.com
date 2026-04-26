@@ -22,7 +22,7 @@ body {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  opacity: 0.08;
+  opacity: 0.1;
   filter: saturate(0.6) brightness(0.9);
   will-change: transform, opacity;
 }
@@ -37,7 +37,7 @@ body {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  opacity: 0.08;
+  opacity: 0.15;
   filter: saturate(0.6) brightness(0.9);
   will-change: transform, opacity;
 }
@@ -51,25 +51,14 @@ body {
 /* Default (light) theme: dark subtle tracks for contrast */
 .track-line {
   fill: none;
-  stroke: rgba(0, 0, 0, 0.05);
+  stroke: rgba(0, 0, 0, 0.12);
   stroke-width: 2.5;
   stroke-linecap: round;
   stroke-linejoin: round;
-  stroke-dasharray: 1200;
-  stroke-dashoffset: 1200;
-  animation: draw 30s cubic-bezier(0.2, 0.1, 0.4, 0.2) 0s 1 forwards;
-  animation-fill-mode: both;
-}
-
-@keyframes draw {
-  to {
-    stroke-dashoffset: 0;
-    opacity: 1;
-  }
 }
 
 .track-line--offset {
-  stroke: rgba(0, 0, 0, 0.05);
+  stroke: rgba(0, 0, 0, 0.25);
   stroke-width: 2;
   transform: translateX(4px);
   transform-origin: 0 0;
@@ -78,10 +67,10 @@ body {
 
 /* Dark theme overrides: make tracks light */
 .dark .track-line {
-  stroke: rgba(255, 255, 255, 0.06);
+  stroke: rgba(255, 255, 255, 0.18);
 }
 .dark .track-line--offset {
-  stroke: rgba(255, 255, 255, 0.12);
+  stroke: rgba(255, 255, 255, 0.35);
 }
 
 /* light-dark polygon animation */
