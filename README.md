@@ -2,12 +2,9 @@
 
 Hi — I'm Luke, a software engineer based in Sydney. This repository contains my personal website where I showcase projects, experience, skills and hobbies.
 
-Quick overview
+[![Website](https://img.shields.io/badge/Visit_My_Website-007bff?style=for-the-badge&logo=google-chrome&logoColor=white)](https://lukehs.com)
 
-- Purpose: personal portfolio and blog-style site
-- Content: projects, work experience, skills, and a skiing gallery
-
-Technology stack
+### Technology stack
 
 - React — https://react.dev
 - TypeScript — https://www.typescriptlang.org
@@ -16,29 +13,3 @@ Technology stack
 - shadcn/ui — https://ui.shadcn.com (UI primitives used across the site)
 - Framer Motion — https://www.framer.com/motion/ (animations)
 - pnpm — https://pnpm.io (package manager)
-
-Run locally
-
-1. Install dependencies:
-
-```bash
-pnpm install
-```
-
-2. Start dev server (hot reload):
-
-```bash
-pnpm dev
-```
-
-3. Build for production:
-
-```bash
-pnpm build
-```
-
-4. Preview the production build locally:
-
-```bash
-pnpm preview
-```
