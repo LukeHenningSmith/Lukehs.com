@@ -107,8 +107,11 @@ export function Skiing({ animationOffset }: { animationOffset?: number }) {
     <Section id="skiing" title="Skiing" animationOffset={animationOffset}>
       <FadeUp delay={animationOffset}>
         <p className="my-2 text-muted-foreground">
-          Lifelong skiier - recent snowboarder. Some of my favourite places I
-          have visited:
+          Lifelong skiier (and recent snowboarder), with hopes to one day ski
+          all over the world.
+        </p>
+        <p className="my-2 text-muted-foreground">
+          Some of the places I have been fortunate enough to visit already:
         </p>
       </FadeUp>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -292,7 +295,7 @@ export function Skiing({ animationOffset }: { animationOffset?: number }) {
           </motion.div>
         )}
       </AnimatePresence>
-
+      {/* 
       <FadeUp delay={(animationOffset ?? 0) + ANIMATION_GAP}>
         <div className="mt-4">
           <h3 className="text-primary mb-2">My skiing bucket list:</h3>
@@ -306,7 +309,7 @@ export function Skiing({ animationOffset }: { animationOffset?: number }) {
             </li>
           </ul>
         </div>
-      </FadeUp>
+      </FadeUp> */}
     </Section>
   );
 }

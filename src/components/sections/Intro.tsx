@@ -11,7 +11,6 @@ import {
 import { SkillsContainer } from "../utility/skills/SkillsContainer";
 import { Section } from "../utility/Section";
 import { FadeUp } from "../layout/FadeUp";
-import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 import { Button } from "../ui/button";
 
 export function Intro({ animationOffset }: { animationOffset?: number }) {
@@ -28,21 +27,32 @@ export function Intro({ animationOffset }: { animationOffset?: number }) {
       <FadeUp delay={animationOffset}>
         <div className="flex flex-col gap-4 text-base text-muted-foreground">
           <span>
-            Hey I'm Luke, a software engineer and skier from Sydney, Australia{" "}
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <span>🇦🇺</span>
-              </TooltipTrigger>
-              <TooltipContent side="bottom" align="center">
-                Australia
-              </TooltipContent>
-            </Tooltip>
-            .
+            Hey I'm Luke, a{" "}
+            <Button
+              variant={"link"}
+              onClick={() => scrollToId("experience")}
+              title="Scroll to Experience section"
+              size={null}
+              className="text-md"
+            >
+              software engineer
+            </Button>{" "}
+            and{" "}
+            <Button
+              variant={"link"}
+              onClick={() => scrollToId("skiing")}
+              title="Scroll to Skiing section"
+              size={null}
+              className="text-md"
+            >
+              skier
+            </Button>{" "}
+            from Sydney, Australia.
           </span>
 
           <span>
-            I have over 2 years of experience building web applications in the
-            finance industry, as well as many exciting{" "}
+            I have 2 years+ experience building web applications in the finance
+            industry, as well as many exciting{" "}
             <Button
               variant={"link"}
               onClick={() => scrollToId("projects")}
@@ -57,22 +67,6 @@ export function Intro({ animationOffset }: { animationOffset?: number }) {
 
           <span>The technologies I am most experienced with are:</span>
           <SkillsContainer skills={skills} />
-
-          <span>
-            <i>
-              I am also an avid skiier (and recent snowboarder) with a{" "}
-              <Button
-                variant={"link"}
-                onClick={() => scrollToId("skiing")}
-                title="Scroll to Skiing section"
-                size={null}
-                className="text-md"
-              >
-                bucket list
-              </Button>{" "}
-              to ski all over the world.
-            </i>
-          </span>
         </div>
       </FadeUp>
     </Section>
