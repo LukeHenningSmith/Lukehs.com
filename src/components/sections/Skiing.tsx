@@ -111,7 +111,7 @@ export function Skiing({ animationOffset }: { animationOffset?: number }) {
           all over the world.
         </p>
         <p className="my-2 text-muted-foreground">
-          Some of the places I have been fortunate enough to visit already:
+          Some of the places I have been fortunate enough to visit:
         </p>
       </FadeUp>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
