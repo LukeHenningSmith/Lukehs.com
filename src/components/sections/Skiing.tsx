@@ -107,8 +107,8 @@ export function Skiing({ animationOffset }: { animationOffset?: number }) {
     <Section id="skiing" title="Skiing" animationOffset={animationOffset}>
       <FadeUp delay={animationOffset}>
         <p className="my-2 text-muted-foreground">
-          Lifelong skiier (and recent snowboarder), with hopes to one day ski
-          all over the world.
+          Lifelong skier (and recent snowboarder), with hopes to one day ski all
+          over the world.
         </p>
         <p className="my-2 text-muted-foreground">
           Some of the places I have been fortunate enough to visit:
